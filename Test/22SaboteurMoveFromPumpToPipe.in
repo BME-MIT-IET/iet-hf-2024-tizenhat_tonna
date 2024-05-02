@@ -1,0 +1,9 @@
+pump Pfrom 100
+pipe Pto 100
+connectpipe Pto Pfrom
+saboteur sab Pfrom
+create
+move sab Pto
+showobject Pto
+showobject Pfrom
+showobject sab

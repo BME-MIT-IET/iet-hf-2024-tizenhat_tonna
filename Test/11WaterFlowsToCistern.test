@@ -1,0 +1,26 @@
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék! 
+Sikeres művelet
+name: c
+occupied: false
+water: 100
+broken: false
+players: null
+pipes: p
+
+name: p
+occupied: false
+water: 0
+broken: false
+players: null
+fields: c, pump
+capacity: 100
+breakable: 0
+rfluidtime: 0
+leave: true
+fluid: dry
+

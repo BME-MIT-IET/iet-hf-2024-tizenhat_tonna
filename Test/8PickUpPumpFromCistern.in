@@ -1,0 +1,6 @@
+cistern c 
+mechanic m c
+addplayer c m
+create
+getpump m
+showobject m

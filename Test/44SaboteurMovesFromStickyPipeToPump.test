@@ -1,0 +1,32 @@
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék!
+Sikertelen művelet
+name: Pfrom
+occupied: true
+water: 0
+broken: false
+players: sab
+fields: Pto
+capacity: 100
+breakable: 0
+rfluidtime: 3
+leave: false
+fluid: sticky
+
+name: Pto
+occupied: false 
+water: 0
+broken: false
+players: null
+pipes: Pfrom
+tank: 100
+waterFrom: null
+waterTo: null
+
+name: sab
+standingField: Pfrom
+

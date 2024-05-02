@@ -1,0 +1,12 @@
+*.~ml
+*.iml
+*.class
+*.xml
+*.bat
+*.name
+*.project
+*.classpath
+*.patch
+*.out
+*.OUT
+/bin/

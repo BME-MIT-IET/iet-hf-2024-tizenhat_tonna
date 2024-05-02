@@ -1,0 +1,13 @@
+pipe goodPipe 50 water:12
+pipe brokenPipe 50 broken:true water:21
+pipe disconnectedPipe 50 water:30
+pump p1 100
+pump p2 100
+connectpipe goodPipe p1
+connectpipe brokenPipe p1
+connectpipe disconnectedPipe p1
+connectpipe goodPipe p2
+connectpipe brokenPipe p2
+create
+count
+showobject wc

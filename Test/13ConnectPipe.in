@@ -1,0 +1,11 @@
+pipe stayPipe 100
+pipe removePipe 100
+pump pump 500
+connectpipe stayPipe pump
+mechanic mech pump pipe:removePipe
+addplayer pump mech
+create
+connect mech
+showobject mech
+showobject pump
+showobject removePipe

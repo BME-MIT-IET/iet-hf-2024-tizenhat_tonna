@@ -1,0 +1,6 @@
+pump brokenPump 100 broken:true
+mechanic mech brokenPump
+addplayer brokenPump mech 
+create
+repair mech
+showobject brokenPump

@@ -1,0 +1,23 @@
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék! 
+Sikeres művelet
+name: holdingPump
+occupied: false
+water: 0
+broken: false
+players: null
+pipes: oldPipe, newPipe1
+tank: 400
+waterFrom: null
+waterTo: null
+
+name: mech
+standingField: oldPipe
+holdingPipe: null
+holdingPump: null
+

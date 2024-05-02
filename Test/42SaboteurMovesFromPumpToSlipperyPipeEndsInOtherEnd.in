@@ -1,0 +1,14 @@
+pump Psameend 100
+pump Potherend 100
+pipe Pto 100 fluid:slippery
+connectpipe Pto Psameend
+connectpipe Pto Potherend
+saboteur sab Psameend
+addplayer Psameend sab
+create
+move sab Pto
+showobject Pto
+showobject Psameend
+showobject Potherend
+showobject sab
+

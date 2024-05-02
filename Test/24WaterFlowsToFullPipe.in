@@ -1,0 +1,14 @@
+pipe pipe1 50 water:30
+pipe fullPipe 40 water:40
+pump pump1 100 water:30
+pump pump2 69
+connectpipe pipe1 pump1
+connectpipe fullPipe pump1
+connectpipe pipe1 pump2
+connectpipe fullPipe pump2
+setpump pump1 pipe1 fullPipe
+create
+step pump1
+showobject pump1
+showobject pipe1
+showobject fullPipe

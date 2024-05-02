@@ -1,0 +1,6 @@
+pipe p 100 
+saboteur sab p
+addplayer p sab
+create
+makesticky sab
+showobject p
