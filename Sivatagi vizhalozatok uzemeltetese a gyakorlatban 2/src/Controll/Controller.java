@@ -286,6 +286,7 @@ public class Controller {
                 case "broken": tmp.setBroken(Boolean.parseBoolean(commands[i][1])); break;
                 case "draw" : PumpDraw pd = new PumpDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]));
                     ViewGame.setDrawsNames(pd, tmp); ViewGame.setDrawsReverseNames(tmp, pd); break;
+                default: break;
             }
         }
         objectNames.put(cmd[1], tmp);
@@ -309,6 +310,7 @@ public class Controller {
                         case "dry": tmp.setFluid(Fluid.DRY); break;
                         case "sticky": tmp.setFluid(Fluid.STICKY); break;
                         case "slippery": tmp.setFluid(Fluid.SLIPPERY); break;
+                        default: break;
                     }
                     break;
                 case "rfluidtime": tmp.setFluidTime(Integer.parseInt(commands[i][1])); break;
@@ -318,6 +320,7 @@ public class Controller {
                 case "leave": tmp.setLeave(Boolean.parseBoolean(commands[i][1])); break;
                 case "draw" : PipeDraw pd = new PipeDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]), Integer.parseInt(commands[i][3]), Integer.parseInt(commands[i][4]));
                 ViewGame.setDrawsNames(pd, tmp); ViewGame.setDrawsReverseNames(tmp, pd); break;
+                default: break;
 
             }
         }
@@ -341,6 +344,7 @@ public class Controller {
                 case "water": tmp.setWater(Integer.parseInt(commands[0][1])); break;
                 case "draw" : CisternDraw cd = new CisternDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]));
                     ViewGame.setDrawsNames(cd, tmp); ViewGame.setDrawsReverseNames(tmp, cd); break;
+                default: break;
             }
         }
         objectNames.put(cmd[1], tmp);
@@ -362,6 +366,8 @@ public class Controller {
             switch (commands[i][0]) {
                 case "draw" : SpringDraw sd = new SpringDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]));
                     ViewGame.setDrawsNames(sd, tmp); ViewGame.setDrawsReverseNames(tmp, sd); break;
+                default: break;
+
             }
         }
         objectNames.put(cmd[1], tmp);
@@ -403,6 +409,8 @@ public class Controller {
                 case "pipe":
                     tmp.setHoldingPipe((Pipe)objectNames.get(commands[i][1]));
                     break;
+                default: break;
+
             }
         }
         objectNames.put(cmd[1], tmp);
@@ -433,6 +441,7 @@ public class Controller {
                         outResults.add("A véletlen események ki lettek kapcsolva."); break;
                     case "true": random = true;
                         outResults.add("A véletlen események be lettek kapcsolva."); break;
+                    default: break;
                 }
             }else {
                 random=true;
@@ -446,6 +455,8 @@ public class Controller {
                         System.out.println("A véletlen események ki lettek kapcsolva."); break;
                     case "true": random = true;
                         System.out.println("A véletlen események be lettek kapcsolva."); break;
+                    default: break;
+
                 }
             }else {
                 random=true;
@@ -479,6 +490,7 @@ public class Controller {
                 if (test) outResults.add(objectReverseNames.get(p.getStandingField()).toString());
                 else System.out.println(objectReverseNames.get(p.getStandingField()));
                 break;
+            default: break;
         }
     }
     /**
