@@ -12,6 +12,7 @@ import Interfaces.Steppable;
 import Players.Mechanic;
 import Players.Player;
 import Players.Saboteur;
+import StringResource.StringResourceController;
 
 import javax.swing.text.View;
 import java.io.*;
@@ -20,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -42,12 +44,12 @@ public class Controller {
     /**
      * Contains the names of the objects, the keys are the objects.
      */
-    public static final HashMap<String, Object> objectNames = new HashMap<>();
+    public static final Map<String, Object> objectNames = new HashMap<>();
 
     /**
      * Contains the objects, the keys are the names of the objects.
      */
-    public static final HashMap<Object, String> objectReverseNames = new HashMap<>();
+    public static final Map<Object, String> objectReverseNames = new HashMap<>();
     /**
      * WaterCounter of the game
      * */
@@ -134,7 +136,7 @@ public class Controller {
      *Reads a command than calls a function to execute it.
      * */
     public static void Run() throws FileNotFoundException {
-        while(commandList.size() != 0) {
+        while(!commandList.isEmpty()) {
             String command = commandList.get(0);
             commandList.remove(0);
             String[] cmd = command.split(" ");
@@ -189,7 +191,7 @@ public class Controller {
             activePlayers.remove(0);
             activePlayers.add(currentPlayer);
             Scanner stdInScanner = new Scanner(System.in);
-            if (commandList.size() == 0){
+            if (commandList.isEmpty()){
                 commandList.add(stdInScanner.nextLine());
             }
             String command = commandList.get(0);
@@ -198,17 +200,17 @@ public class Controller {
             switch(cmd[0]) {
                 case("show"): show(cmd); break;
                 case("showobject"): showobject(cmd); break;
-                case("move"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else move(cmd); break;
-                case("breakfield"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else breakfield(cmd); break;
-                case("repair"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else repair(cmd); break;
-                case("placepump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else placepump(cmd); break;
-                case("set"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else set(cmd); break;
-                case("disconnect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else disconnect(cmd); break;
-                case("connect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else connect(cmd); break;
-                case("getpump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else getpump(cmd); break;
-                case("pickuppipe"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!");else pickuppipe(cmd); break;
-                case("makesticky"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else makesticky(cmd); break;
-                case("makeslippery"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else makeslippery(cmd); break;
+                case("move"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else move(cmd); break;
+                case("breakfield"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else breakfield(cmd); break;
+                case("repair"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else repair(cmd); break;
+                case("placepump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else placepump(cmd); break;
+                case("set"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else set(cmd); break;
+                case("disconnect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else disconnect(cmd); break;
+                case("connect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else connect(cmd); break;
+                case("getpump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else getpump(cmd); break;
+                case("pickuppipe"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER);else pickuppipe(cmd); break;
+                case("makesticky"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else makesticky(cmd); break;
+                case("makeslippery"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else makeslippery(cmd); break;
                 case("save"): save(cmd); break;
                 case("testall"): testAll(cmd); break;
                 case("list"): list(); break;
@@ -234,10 +236,10 @@ public class Controller {
      * Function for loading a file.
      * */
     public static void load(String cmd){
-        try {
+        try(Scanner scanner = new Scanner(new File(cmd))) {
             outResults.clear();
             logger.log(Level.INFO, cmd);
-            Scanner scanner = new Scanner(new File(cmd));
+
             filePath = cmd;
             String separator = "\\";
             String[] tmp=cmd.replaceAll(Pattern.quote(separator), "\\\\").split("\\\\");
@@ -258,20 +260,20 @@ public class Controller {
         // a text file is located in src folder in the project
         Path rootDir = Paths.get(".").normalize().toAbsolutePath();
         File file = new File(rootDir.toString() + "/" + fileNameToOpen);
-            try {
-                Reader input = new FileReader(file);
+        try( Reader input = new FileReader(file)) {
+            try (BufferedReader br = new BufferedReader(input)) {
+
                 // Checks if reader is ready
-                BufferedReader br = new BufferedReader(input);
+
                 String line = "";
 
                 while ((line = br.readLine()) != null) {
                     logger.log(Level.INFO, line);
                 }
-                // Closes the reader
-                input.close();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
             /**
@@ -286,7 +288,7 @@ public class Controller {
 
         for(int i=0; i<commands.length; i++){
             switch (commands[i][0]){
-                case "water": tmp.setWater(Integer.parseInt(commands[i][1])); break;
+                case StringResourceController.WATER: tmp.setWater(Integer.parseInt(commands[i][1])); break;
                 case "broken": tmp.setBroken(Boolean.parseBoolean(commands[i][1])); break;
                 case "draw" : PumpDraw pd = new PumpDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]));
                     ViewGame.setDrawsNames(pd, tmp); ViewGame.setDrawsReverseNames(tmp, pd); break;
@@ -295,8 +297,8 @@ public class Controller {
         }
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for creating a pipe.
@@ -320,7 +322,7 @@ public class Controller {
                 case "rfluidtime": tmp.setFluidTime(Integer.parseInt(commands[i][1])); break;
                 case "breakable": tmp.setBreakable(Integer.parseInt(commands[i][1])); break;
                 case "broken": tmp.setBroken(Boolean.parseBoolean(commands[i][1])); break;
-                case "water": tmp.setWater(Integer.parseInt(commands[i][1])); break;
+                case StringResourceController.WATER: tmp.setWater(Integer.parseInt(commands[i][1])); break;
                 case "leave": tmp.setLeave(Boolean.parseBoolean(commands[i][1])); break;
                 case "draw" : PipeDraw pd = new PipeDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]), Integer.parseInt(commands[i][3]), Integer.parseInt(commands[i][4]));
                 ViewGame.setDrawsNames(pd, tmp); ViewGame.setDrawsReverseNames(tmp, pd); break;
@@ -331,8 +333,8 @@ public class Controller {
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
         waterCounter.addPipe(tmp);
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for creating a cistern.
@@ -345,7 +347,7 @@ public class Controller {
         }
         for(int i=0; i<commands.length; i++) {
             switch (commands[i][0]) {
-                case "water": tmp.setWater(Integer.parseInt(commands[0][1])); break;
+                case StringResourceController.WATER: tmp.setWater(Integer.parseInt(commands[0][1])); break;
                 case "draw" : CisternDraw cd = new CisternDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]));
                     ViewGame.setDrawsNames(cd, tmp); ViewGame.setDrawsReverseNames(tmp, cd); break;
                 default: break;
@@ -354,8 +356,8 @@ public class Controller {
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
         waterCounter.addCistern(tmp);
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for creating a spring.
@@ -376,8 +378,8 @@ public class Controller {
         }
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for creating a saboteur.
@@ -389,8 +391,8 @@ public class Controller {
         SaboteurDraw sd = new SaboteurDraw(0,0); ViewGame.setDrawsNames(sd, tmp); ViewGame.setDrawsReverseNames(tmp, sd);
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         activePlayers.add(tmp);
     }
     /**
@@ -419,8 +421,8 @@ public class Controller {
         }
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         activePlayers.add(tmp);
     }
     /**
@@ -431,8 +433,8 @@ public class Controller {
         ActiveFields activeField = (ActiveFields)objectNames.get(cmd[2]);
         pipe.setFields(activeField);
         activeField.addPipe(pipe);
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for switching random off and on.
@@ -441,30 +443,30 @@ public class Controller {
         if (test) {
             if(cmd.length == 2){
                 switch (cmd[1]){
-                    case "false": random = false;
+                    case StringResourceController.FALSE: random = false;
                         outResults.add("A véletlen események ki lettek kapcsolva."); break;
                     case "true": random = true;
-                        outResults.add("A véletlen események be lettek kapcsolva."); break;
+                        outResults.add(StringResourceController.RANDOM_ON); break;
                     default: break;
                 }
             }else {
                 random=true;
-                outResults.add("A véletlen események be lettek kapcsolva.");
+                outResults.add(StringResourceController.RANDOM_ON);
             }
         }
         else {
             if(cmd.length == 2){
                 switch (cmd[1]){
-                    case "false": random = false;
+                    case StringResourceController.FALSE: random = false;
                         logger.log(Level.INFO, "A véletlen események ki lettek kapcsolva."); break;
                     case "true": random = true;
-                        logger.log(Level.INFO, "A véletlen események be lettek kapcsolva."); break;
+                        logger.log(Level.INFO, StringResourceController.RANDOM_ON); break;
                     default: break;
 
                 }
             }else {
                 random=true;
-                logger.log(Level.INFO, "A véletlen események be lettek kapcsolva.");
+                logger.log(Level.INFO, StringResourceController.RANDOM_ON);
             }
         }
 
@@ -514,21 +516,21 @@ public class Controller {
         ArrayList<Field> neighbors = p.getStandingField().getNeighborFields();
         if(neighbors.contains(f)) {
             if (p.move(f)) {
-                if (test) {outResults.add("Sikeres művelet");lastResult = true;}
-                else {logger.log(Level.INFO, "Sikeres művelet");lastResult = true;}
+                if (test) {outResults.add(StringResourceController.GOOD_ACTION);lastResult = true;}
+                else {logger.log(Level.INFO, StringResourceController.GOOD_ACTION);lastResult = true;}
             } else {
-                if (test) {outResults.add("Sikertelen művelet");lastResult = false;}
+                if (test) {outResults.add(StringResourceController.WRONG_ACTION);lastResult = false;}
                 else {
-                    logger.log(Level.INFO, "Sikertelen művelet");
+                    logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                     lastResult = false;
                     moves--;
                 }
             }
         }
         else{
-            if (test) {outResults.add("Sikertelen művelet");lastResult = false;}
+            if (test) {outResults.add(StringResourceController.WRONG_ACTION);lastResult = false;}
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 lastResult = false;
                 moves--;
             }
@@ -540,12 +542,12 @@ public class Controller {
     public static void breakfield(String[] cmd){
         Player p = (Player)objectNames.get(cmd[1]);
         if(p.breakField()){
-            if (test) {outResults.add("Sikeres művelet"); lastResult = true;}
-            else {logger.log(Level.INFO, "Sikeres művelet");lastResult = true;}
+            if (test) {outResults.add(StringResourceController.GOOD_ACTION); lastResult = true;}
+            else {logger.log(Level.INFO, StringResourceController.GOOD_ACTION);lastResult = true;}
         }else  {
-            if (test) {outResults.add("Sikertelen művelet"); lastResult = false;}
+            if (test) {outResults.add(StringResourceController.WRONG_ACTION); lastResult = false;}
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 lastResult = false;
                 moves--;
             }
@@ -558,13 +560,13 @@ public class Controller {
         Player p = (Player)objectNames.get(cmd[1]);
         if(p.repair()){
             lastResult = true;
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
             lastResult = false;
-            if (test) outResults.add("Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 moves--;
             }
         }
@@ -618,13 +620,13 @@ public class Controller {
             //redrawing the old pipe
             oldPipeD.setCoords(newPumpD, pumpBD);
             
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
             lastResult = false;
-            if (test) outResults.add("Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 moves--;
             }
         }
@@ -636,13 +638,13 @@ public class Controller {
          Player player = (Player)objectNames.get(cmd[1]);
          if(player.getStandingField().set((Pipe)objectNames.get(cmd[2]), (Pipe)objectNames.get(cmd[3]))){
              lastResult = true;
-             if (test) outResults.add("Sikeres művelet");
-             else logger.log(Level.INFO, "Sikeres művelet");
+             if (test) outResults.add(StringResourceController.GOOD_ACTION);
+             else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
          }else  {
              lastResult = false;
-             if (test) outResults.add("Sikertelen művelet");
+             if (test) outResults.add(StringResourceController.WRONG_ACTION);
              else {
-                 logger.log(Level.INFO, "Sikertelen művelet");
+                 logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                  moves--;
              }
          }
@@ -654,13 +656,13 @@ public class Controller {
         Player player = (Player)objectNames.get(cmd[1]);
         if(player.disconnect((Pipe)objectNames.get(cmd[2]))){
             lastResult = true;
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
             lastResult = false;
-            if (test) outResults.add("Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 moves--;
             }
         }
@@ -685,13 +687,13 @@ public class Controller {
             Drawable fromPumpD = ViewGame.objectDrawReverseNames.get(standing);
             pd.setCoords(fromPumpD, toPumpD);
             
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
             lastResult = false;
-            if (test) outResults.add("Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 moves--;
             }
         }
@@ -710,13 +712,13 @@ public class Controller {
             lastResult = true;
         
             
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
             lastResult = false;
-            if (test) outResults.add("Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 moves--;
             }
         }
@@ -735,13 +737,13 @@ public class Controller {
             ViewGame.setDrawsNames(newPipeD, newPipe); 
             ViewGame.setDrawsReverseNames(newPipe, newPipeD);
             
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
             lastResult = false;
-            if (test) outResults.add("Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 moves--;
             }
         }
@@ -753,13 +755,13 @@ public class Controller {
         Player player = (Player)objectNames.get(cmd[1]);
         if(player.makeSticky()){
             lastResult = true;
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
             lastResult = false;
-            if (test) outResults.add("Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 moves--;
             }
         }
@@ -772,13 +774,13 @@ public class Controller {
         logger.log(Level.INFO, cmd[1]);
         if(player.makeSlippery()){
             lastResult = true;
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
             lastResult = false;
-            if (test) outResults.add("Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
             else {
-                logger.log(Level.INFO, "Sikertelen művelet");
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
                 moves--;
             }
         }
@@ -795,7 +797,7 @@ public class Controller {
             }
         }
         catch(FileNotFoundException e) {
-           
+            logger.log(Level.WARNING, StringResourceController.FILE_NOT_FOUND);
         }
         try {
             Scanner scannerResult = new Scanner(new File(cmd[1]));
@@ -817,7 +819,7 @@ public class Controller {
                 return;
             }
             int errors = 0;
-            if (result.size() > 0 && expected.size() > 0) {
+            if (!result.isEmpty() && !expected.isEmpty()) {
                 for (int i = 0; i < expected.size(); i++) {
                     if (!result.get(i).equals(expected.get(i))) {
                         logger.log(Level.INFO, "Error in line " + (i+1) + ".\nExpected: " + expected.get(i) + ", but got: " + result.get(i));
@@ -825,7 +827,7 @@ public class Controller {
                     }
                 }
             }
-            if (errors == 0 && result.size() > 0 && expected.size() > 0) {
+            if (errors == 0 && !result.isEmpty() && !expected.isEmpty()) {
                 logger.log(Level.INFO, "Test succeeded.\n");
             }
             else {
@@ -837,7 +839,7 @@ public class Controller {
             objectReverseNames.clear();
         }
         catch(FileNotFoundException e) {
-            
+            logger.log(Level.WARNING, StringResourceController.FILE_NOT_FOUND);
         }
         outResults.clear();
     }
@@ -845,15 +847,14 @@ public class Controller {
      * Function for doing all the tests.
      * */
     public static void testAll(String[] cmd) {
-        try {
-            Scanner scanner = new Scanner(new File(cmd[1] + "\\Alltests.txt"));
+        try(Scanner scanner = new Scanner(new File(cmd[1] + "\\Alltests.txt"))) {
+
             while(scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 load(cmd[1] + "\\" + line);
             }
         } catch (FileNotFoundException e) {
-           
-          
+            logger.log(Level.WARNING, StringResourceController.FILE_NOT_FOUND);
         }
     }
     /**
@@ -871,19 +872,19 @@ public class Controller {
         Field f = (Field) objectNames.get(cmd[1]);
         Player p = (Player) objectNames.get(cmd[2]);
         if(f.accept(p) != null) {
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
-            if (test) outResults.add("Sikertelen művelet");
-            else logger.log(Level.INFO, "Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
+            else logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
         }
     }
 
     public static void step(String[] cmd){
         Steppable s = (Steppable)objectNames.get(cmd[1]);
         s.step();
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for ending a turn.
@@ -901,15 +902,15 @@ public class Controller {
                 value.step();
             }
         }
-        logger.log(Level.INFO, "Sikeres művelet");
+        logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for countig the points for the two sides.
      * */
     public static void count(String[] cmd){
         waterCounter.count();
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for restaring the game.
@@ -921,7 +922,7 @@ public class Controller {
         waterCounter.reset();
         test = false;
         pumps=pipes=0;
-        logger.log(Level.INFO, "Sikeres művelet");
+        logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         if(!test) gameMode = false;
     }
     /**
@@ -929,16 +930,16 @@ public class Controller {
      * */
     public static void test(String[] cmd){
         if(cmd[1].equals("true")) test=true;
-        else if(cmd[1].equals("false")) test=false;
-        logger.log(Level.INFO, "Sikeres művelet");
+        else if(cmd[1].equals(StringResourceController.FALSE)) test=false;
+        logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for signaling to the watercounter that the game ended.
      * */
     public static void setend(String[] cmd){
         waterCounter.setEnd();
-        if (test) outResults.add("Sikeres művelet");
-        else logger.log(Level.INFO, "Sikeres művelet");
+        if (test) outResults.add(StringResourceController.GOOD_ACTION);
+        else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
     }
     /**
      * Function for setting the in/out pipes of a pump.
@@ -946,11 +947,11 @@ public class Controller {
     public static void setpump(String[] cmd){
         Pump pump = (Pump)objectNames.get(cmd[1]);
         if(pump.set((Pipe)objectNames.get(cmd[2]), (Pipe)objectNames.get(cmd[3]))){
-            if (test) outResults.add("Sikeres művelet");
-            else logger.log(Level.INFO, "Sikeres művelet");
+            if (test) outResults.add(StringResourceController.GOOD_ACTION);
+            else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
         }else  {
-            if (test) outResults.add("Sikertelen művelet");
-            else logger.log(Level.INFO, "Sikertelen művelet");
+            if (test) outResults.add(StringResourceController.WRONG_ACTION);
+            else logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
         }
     }
 }

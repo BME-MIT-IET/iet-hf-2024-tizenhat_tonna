@@ -1,0 +1,9 @@
+
+‡	java:S112‹"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿJ$3d89bf19-b218-4a15-bab7-84c94838d491
+š
+java:S22937"YReplace the type specification in this constructor call with the diamond operator ("<>").(£¥©öýÿÿÿÿJ$13d512dc-bc36-491f-a263-1907ba8ec9d7
+•
+java:S2293;"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯‹À›J$7ac07cf7-3843-4535-9d90-88f3ad54bbf0
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ØŸéîþÿÿÿÿJ$989fdf1d-8fc7-465c-9724-4bcfb0fd74c4
+Š
+java:S3252!"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Õû»öþÿÿÿÿJ$3644d733-d183-4349-b4fe-094fb1c9f2ca

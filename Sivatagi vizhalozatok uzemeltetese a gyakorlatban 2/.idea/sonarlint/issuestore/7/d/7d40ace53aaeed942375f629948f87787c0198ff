@@ -1,0 +1,82 @@
+
+³
+java:S1319\"kThe type of "commandList" should be an interface such as "List" rather than the implementation "ArrayList".(Œ¡è¯ùÿÿÿÿ8¶Ôìíô1J$a7057dc5-699a-4768-aae9-f57bec307225
+³
+java:S1319t"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(³Ôº¥8¶Ôìíô1J$4f5991e2-5541-4a3c-8548-691045f2b5c0
+”
+java:S1104a"QMake pipes a static final constant or non-public and provide accessors if needed.(ìÄİ°8¸Ôìíô1J$8e80bd1b-9986-4914-8301-872b6a894390
+™
+java:S1104e"QMake pumps a static final constant or non-public and provide accessors if needed.(æ©µ›ıÿÿÿÿ8¸Ôìíô1J$b5593c64-a3fc-46f2-b0ea-16a2a61e799e
+–
+java:S1104k"TMake gameMode a static final constant or non-public and provide accessors if needed.(õ–88¸Ôìíô1J$bd67a877-802c-44ee-b821-44869b5d2af3
+”
+java:S1104m"QMake moves a static final constant or non-public and provide accessors if needed.(ãÂ¡ƒ8¸Ôìíô1J$87d36a2c-9db3-407c-9dff-3792392488c7
+
+java:S1104n"VMake lastResult a static final constant or non-public and provide accessors if needed.(Ùş¾şÿÿÿÿ8¸Ôìíô1J$7e802c2e-7f1e-4ee8-aef3-4d38ba54c26a
+n
+java:S1444a"+Make this "public static pipes" field final(ìÄİ°8¹Ôìíô1J$539030a6-e4b7-4979-94d2-c56abdeb1b48
+s
+java:S1444e"+Make this "public static pumps" field final(æ©µ›ıÿÿÿÿ8¹Ôìíô1J$80f5dcdb-6802-4833-af54-b9928d07150c
+p
+java:S1444k".Make this "public static gameMode" field final(õ–88ºÔìíô1J$45016531-839b-4e2d-8614-a9a94f2a444e
+n
+java:S1444m"+Make this "public static moves" field final(ãÂ¡ƒ8ºÔìíô1J$56e654f1-6c66-46cf-becc-633bc7e2d8de
+x
+java:S1444n"0Make this "public static lastResult" field final(Ùş¾şÿÿÿÿ8ºÔìíô1J$736d95e8-f654-49fd-b91d-b3ef4dc5adde
+m
+java:S2629ù"$Invoke method(s) only conditionally.(Ô¡Î—şÿÿÿÿ8»Ôìíô1J$9193e080-1f17-4c82-873c-d341c77f654c
+m
+java:S2629ü"$Invoke method(s) only conditionally.(¾‹¿©úÿÿÿÿ8ñ¬‹îô1J$2bdad983-8172-42ba-9519-4d2c44b44969
+¥
+java:S2629°"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ÑÁ¸ùÿÿÿÿ8ñ¬‹îô1J$ecf3509e-0b6f-4e41-a177-9c0d2517e2b7
+¥
+java:S2629¹"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ôÌ‹Úÿÿÿÿÿ8ò¬‹îô1J$57749563-4df8-4899-9a3a-7871fb155637
+ 
+java:S2629á"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(®ğÈ¨8ò¬‹îô1J$1c842bf2-67cc-4842-b951-c65a1e645f5d
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ØŸéîşÿÿÿÿ8¿Ôìíô1J$fdcc7ddf-1aba-449b-835f-252c2cb45c6c
+Ÿ
+java:S1450H"WRemove the "filePath" field and declare it as a local variable in the relevant methods.(­ ³Ïÿÿÿÿÿ8ÑÕìíô1J$cdde1acf-ae15-4c5b-99d6-fe76999b267e
+e
+java:S2386/"Make this member "protected".(ãõÄÿÿÿÿÿ8ÒÕìíô1J$ee4361bd-6630-4530-800e-9c14ad7e69ce
+`
+java:S23864"Make this member "protected".(›úíò8ÒÕìíô1J$8ab1ce37-0e31-4af4-b676-f1efe59f417f
+e
+java:S2386\"Make this member "protected".(Œ¡è¯ùÿÿÿÿ8ÒÕìíô1J$798fc907-659a-466d-8b69-a419e914b8d8
+}
+java:S1118!":Add a private constructor to hide the implicit public one.(Øó´Ÿ8ÔÕìíô1J$14e0249f-36d5-4d32-ae44-4142297ed092
+•	java:S100v"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÿîÿÿÿÿÿ8ØÕìíô1J$96b48713-400e-4371-9a3a-e3ae668cebe1
+	java:S100x"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ‘×‡8ØÕìíô1J$a17b5173-45a4-4d35-ad27-44ed08c3996f
+	java:S100Š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏÖ_8ÙÕìíô1J$46b4e3d2-3730-4fdc-8fb2-a726ec338b04
+¹
+java:S1130Š"vRemove the declaration of thrown exception 'java.io.FileNotFoundException', as it cannot be thrown from method's body.(ÏÖ_8ÚÕìíô1J$96befe20-e100-4c13-b006-b398257cc565
+–	java:S100¼"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÏûçûÿÿÿÿ8ßÕìíô1J$171f7b1e-83c7-4d7c-8e7f-9c1796303887
+›
+java:S3776¼"RRefactor this method to reduce its Cognitive Complexity from 51 to the 15 allowed.(õÏûçûÿÿÿÿ8àÕìíô1J$06ffe585-389f-4f52-ba09-b98c0baf52c7
+o
+java:S1075†"&Remove this hard-coded path-delimiter.(¸æ¿†ıÿÿÿÿ8ëÕìíô1J$7a69ebed-5484-471b-9317-6ace7de5bb5a
+”
+java:S1301ô"KReplace this "switch" statement by "if" statements to increase readability.(‚‚ùãşÿÿÿÿ8¿şíô1J$b51393f9-f7c9-4856-ac84-cad1b97b909b
+›
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ßæÿ£üÿÿÿÿ8ô­‹îô1J$45b21109-04bf-4b4f-bb87-4890940dc330
+l
+java:S1659Ä"#Declare "pumpB" on a separate line.(²š­ÿşÿÿÿÿ8÷­‹îô1J$60e666a7-1a58-4d6e-ba0f-4e7ed0844a15
+l	java:S108É")Either remove or fill this block of code.(”ı¾8ø­‹îô1J$d19011c6-0c25-4613-9136-9f7154582299
+q	java:S108©")Either remove or fill this block of code.(¬Àáªøÿÿÿÿ8ü­‹îô1J$75ddecc0-ca63-4331-a866-f82ba1d89bf8
+p
+java:S1125Ü"'Remove the unnecessary boolean literal.(¿àÎ²ùÿÿÿÿ8ÿ­‹îô1J$715e5dbd-1dda-49e1-bcad-8786da39b6d9
+–
+java:S3776™"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(‰‹¸8®‹îô1J$e2916075-1508-4fdf-806f-7ba1ce4e85c1
+”
+java:S3457°"KFormat specifiers or lambda should be used instead of string concatenation.(ÑÁ¸ùÿÿÿÿ8„®‹îô1J$e32136f1-956b-4e3a-ba0f-db95d672a74b
+”
+java:S3457¹"KFormat specifiers or lambda should be used instead of string concatenation.(ôÌ‹Úÿÿÿÿÿ8†®‹îô1J$d0099d22-04b8-46db-b511-11c5ce398e09
+
+java:S3457á"KFormat specifiers or lambda should be used instead of string concatenation.(®ğÈ¨8ˆ®‹îô1J$c9be0037-d60f-49cd-843a-42c116ac6ac6
+s
+java:S1172ı"*Remove this unused method parameter "cmd".(ÉÈ¼™ùÿÿÿÿ8ô²îô1J$25c342ab-8f6c-4406-a9ef-139100049f43
+s
+java:S1172"*Remove this unused method parameter "cmd".(û´®ƒşÿÿÿÿ8‹®‹îô1J$81f5b3f5-c494-468e-bda2-43f52391ab8f
+s
+java:S1172–"*Remove this unused method parameter "cmd".(‹ãÛáÿÿÿÿÿ8‹®‹îô1J$dd312a79-61fd-4d09-9d91-e572324209a3
+n
+java:S1172«"*Remove this unused method parameter "cmd".(áÅ±ş8Œ®‹îô1J$a2dd2993-3fff-4409-a078-a0a65c00b890
