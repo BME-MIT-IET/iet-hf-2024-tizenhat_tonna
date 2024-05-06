@@ -515,19 +515,22 @@ public class Controller {
         Field f = (Field)objectNames.get(cmd[2]);
         ArrayList<Field> neighbors = p.getStandingField().getNeighborFields();
         if(neighbors.contains(f)) {
-            if (p.move(f)) {
-                if (test) {outResults.add(StringResourceController.GOOD_ACTION);lastResult = true;}
-                else {logger.log(Level.INFO, StringResourceController.GOOD_ACTION);lastResult = true;}
-            } else {
-                if (test) {outResults.add(StringResourceController.WRONG_ACTION);lastResult = false;}
-                else {
-                    logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
-                    lastResult = false;
-                    moves--;
-                }
-            }
+            neighborsContains(p,f);
         }
         else{
+            if (test) {outResults.add(StringResourceController.WRONG_ACTION);lastResult = false;}
+            else {
+                logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
+                lastResult = false;
+                moves--;
+            }
+        }
+    }
+    private static void neighborsContains(Player p, Field f){
+        if (p.move(f)) {
+            if (test) {outResults.add(StringResourceController.GOOD_ACTION);lastResult = true;}
+            else {logger.log(Level.INFO, StringResourceController.GOOD_ACTION);lastResult = true;}
+        } else {
             if (test) {outResults.add(StringResourceController.WRONG_ACTION);lastResult = false;}
             else {
                 logger.log(Level.INFO, StringResourceController.WRONG_ACTION);
@@ -818,15 +821,7 @@ public class Controller {
                 logger.log(Level.INFO, "Test failed. The 2 files do not have the same amount of lines.");
                 return;
             }
-            int errors = 0;
-            if (!result.isEmpty() && !expected.isEmpty()) {
-                for (int i = 0; i < expected.size(); i++) {
-                    if (!result.get(i).equals(expected.get(i))) {
-                        logger.log(Level.INFO, "Error in line " + (i+1) + ".\nExpected: " + expected.get(i) + ", but got: " + result.get(i));
-                        errors++;
-                    }
-                }
-            }
+            int errors = getErros(result, expected);
             if (errors == 0 && !result.isEmpty() && !expected.isEmpty()) {
                 logger.log(Level.INFO, "Test succeeded.\n");
             }
@@ -842,6 +837,19 @@ public class Controller {
             logger.log(Level.WARNING, StringResourceController.FILE_NOT_FOUND);
         }
         outResults.clear();
+    }
+
+    private static int getErros(ArrayList<String> result, ArrayList<String> expected ){
+        int errors = 0;
+        if (!result.isEmpty() && !expected.isEmpty()) {
+            for (int i = 0; i < expected.size(); i++) {
+                if (!result.get(i).equals(expected.get(i))) {
+                    logger.log(Level.INFO, "Error in line " + (i+1) + ".\nExpected: " + expected.get(i) + ", but got: " + result.get(i));
+                    errors++;
+                }
+            }
+        }
+        return errors;
     }
     /**
      * Function for doing all the tests.
