@@ -1,6 +1,7 @@
 package StringResource;
 
 public final class StringResourceController {
+    private StringResourceController(){}
     public static final String FALSE = "false";
     public static final String FILE_NOT_FOUND = "File not found";
     public static final String WRONG_PLAYER = "Nem te vagy a soron következő játékos!";

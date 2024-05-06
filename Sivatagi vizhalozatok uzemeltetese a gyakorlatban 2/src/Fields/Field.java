@@ -174,6 +174,7 @@ public abstract class Field implements Steppable {
 	 * @return water in field.
 	 */
 	public int getWaterNoChange(){
+		//It has different implementaion later
 		return water;
 	}
 
