@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.WindowConstans;
+import javax.swing.WindowConstants;
 
 public class ViewGame extends JFrame implements ActionListener {
 
@@ -155,7 +155,7 @@ public class ViewGame extends JFrame implements ActionListener {
      */
     public ViewGame() {
         setTitle("Sivatagi vízhálózatok üzemeltetése a gyakorlatban 2");
-        setDefaultCloseOperation(WindowConstans.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(true);
         setBounds(400, 150, 1000, 700);
         setLayout(new BorderLayout());
