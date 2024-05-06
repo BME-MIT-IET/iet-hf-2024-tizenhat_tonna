@@ -23,9 +23,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 @SuppressWarnings("DuplicatedCode")
 public class Controller {
+    static Logger logger = Logger.getLogger(Controller.class.getName());
     /**
      * If true the game is random
      * */
@@ -170,7 +174,7 @@ public class Controller {
                 case("setpump"): setpump(cmd); break;
                 case("restart"): restart(cmd); break;
                 case("exit"): return;
-                default: System.out.println("Hibás parancs.");
+                default: logger.log(Level.INFO, "Hibás parancs.");
             }
         }
     }
@@ -194,17 +198,17 @@ public class Controller {
             switch(cmd[0]) {
                 case("show"): show(cmd); break;
                 case("showobject"): showobject(cmd); break;
-                case("move"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else move(cmd); break;
-                case("breakfield"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else breakfield(cmd); break;
-                case("repair"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else repair(cmd); break;
-                case("placepump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else placepump(cmd); break;
-                case("set"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else set(cmd); break;
-                case("disconnect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else disconnect(cmd); break;
-                case("connect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else connect(cmd); break;
-                case("getpump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else getpump(cmd); break;
-                case("pickuppipe"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!");else pickuppipe(cmd); break;
-                case("makesticky"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else makesticky(cmd); break;
-                case("makeslippery"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) System.out.println("Nem te vagy a soron következő játékos!"); else makeslippery(cmd); break;
+                case("move"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else move(cmd); break;
+                case("breakfield"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else breakfield(cmd); break;
+                case("repair"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else repair(cmd); break;
+                case("placepump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else placepump(cmd); break;
+                case("set"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else set(cmd); break;
+                case("disconnect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else disconnect(cmd); break;
+                case("connect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else connect(cmd); break;
+                case("getpump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else getpump(cmd); break;
+                case("pickuppipe"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!");else pickuppipe(cmd); break;
+                case("makesticky"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else makesticky(cmd); break;
+                case("makeslippery"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, "Nem te vagy a soron következő játékos!"); else makeslippery(cmd); break;
                 case("save"): save(cmd); break;
                 case("testall"): testAll(cmd); break;
                 case("list"): list(); break;
@@ -217,7 +221,7 @@ public class Controller {
                 case("setpump"): setpump(cmd); break;
                 case("restart"): restart(cmd); break;
                 case("exit"): return;
-                default: System.out.println("Hibás parancs.");
+                default: logger.log(Level.INFO, "Hibás parancs.");
             }
             if (moves == activePlayers.size()) {
                 moves = 0;
@@ -232,7 +236,7 @@ public class Controller {
     public static void load(String cmd){
         try {
             outResults.clear();
-            System.out.println(cmd);
+            logger.log(Level.INFO, cmd);
             Scanner scanner = new Scanner(new File(cmd));
             filePath = cmd;
             String separator = "\\";
@@ -240,13 +244,13 @@ public class Controller {
             fileName = tmp[tmp.length-1];
             while (scanner.hasNextLine()){
                 commandList.add(scanner.nextLine());
-                System.out.println(commandList.get(commandList.size()-1));
+                logger.log(Level.INFO, commandList.get(commandList.size()-1));
             }
             if (test) {
                 commandList.add("save " + filePath.replace(".in", ".out"));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Nem található a fájl!");
+            logger.log(Level.INFO, "Nem található a fájl!");
         }
     }
 
@@ -261,7 +265,7 @@ public class Controller {
                 String line = "";
 
                 while ((line = br.readLine()) != null) {
-                    System.out.println(line);
+                    logger.log(Level.INFO, line);
                 }
                 // Closes the reader
                 input.close();
@@ -292,7 +296,7 @@ public class Controller {
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for creating a pipe.
@@ -328,7 +332,7 @@ public class Controller {
         objectReverseNames.put(tmp, cmd[1]);
         waterCounter.addPipe(tmp);
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for creating a cistern.
@@ -351,7 +355,7 @@ public class Controller {
         objectReverseNames.put(tmp, cmd[1]);
         waterCounter.addCistern(tmp);
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for creating a spring.
@@ -373,7 +377,7 @@ public class Controller {
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for creating a saboteur.
@@ -386,7 +390,7 @@ public class Controller {
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
         activePlayers.add(tmp);
     }
     /**
@@ -416,7 +420,7 @@ public class Controller {
         objectNames.put(cmd[1], tmp);
         objectReverseNames.put(tmp, cmd[1]);
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
         activePlayers.add(tmp);
     }
     /**
@@ -428,7 +432,7 @@ public class Controller {
         pipe.setFields(activeField);
         activeField.addPipe(pipe);
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for switching random off and on.
@@ -452,15 +456,15 @@ public class Controller {
             if(cmd.length == 2){
                 switch (cmd[1]){
                     case "false": random = false;
-                        System.out.println("A véletlen események ki lettek kapcsolva."); break;
+                        logger.log(Level.INFO, "A véletlen események ki lettek kapcsolva."); break;
                     case "true": random = true;
-                        System.out.println("A véletlen események be lettek kapcsolva."); break;
+                        logger.log(Level.INFO, "A véletlen események be lettek kapcsolva."); break;
                     default: break;
 
                 }
             }else {
                 random=true;
-                System.out.println("A véletlen események be lettek kapcsolva.");
+                logger.log(Level.INFO, "A véletlen események be lettek kapcsolva.");
             }
         }
 
@@ -472,7 +476,7 @@ public class Controller {
         objectNames.put("wc", waterCounter);
         objectReverseNames.put(waterCounter, "wc");
         if (test) outResults.add("A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék!");
-        else System.out.println("A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék!");
+        else logger.log(Level.INFO, "A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék!");
         if(!test) gameMode = true;
     }
     /**
@@ -484,11 +488,11 @@ public class Controller {
         switch (commands[1]){
             case "player":
                 if (test) outResults.add(p.toString());
-                else System.out.println(p);
+                else logger.log(Level.INFO, p.toString());
                 break;
             case "field":
                 if (test) outResults.add(objectReverseNames.get(p.getStandingField()).toString());
-                else System.out.println(objectReverseNames.get(p.getStandingField()));
+                else logger.log(Level.INFO, objectReverseNames.get(p.getStandingField()));
                 break;
             default: break;
         }
@@ -499,7 +503,7 @@ public class Controller {
     public static void showobject(String[] cmd){
         Object object = objectNames.get(cmd[1]);
         if (test) outResults.add(object.toString());
-        else System.out.println(object.toString());
+        else logger.log(Level.INFO, object.toString());
     }
     /**
      * Function for moving a player to a field.
@@ -511,11 +515,11 @@ public class Controller {
         if(neighbors.contains(f)) {
             if (p.move(f)) {
                 if (test) {outResults.add("Sikeres művelet");lastResult = true;}
-                else {System.out.println("Sikeres művelet");lastResult = true;}
+                else {logger.log(Level.INFO, "Sikeres művelet");lastResult = true;}
             } else {
                 if (test) {outResults.add("Sikertelen művelet");lastResult = false;}
                 else {
-                    System.out.println("Sikertelen művelet");
+                    logger.log(Level.INFO, "Sikertelen művelet");
                     lastResult = false;
                     moves--;
                 }
@@ -524,7 +528,7 @@ public class Controller {
         else{
             if (test) {outResults.add("Sikertelen művelet");lastResult = false;}
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 lastResult = false;
                 moves--;
             }
@@ -537,11 +541,11 @@ public class Controller {
         Player p = (Player)objectNames.get(cmd[1]);
         if(p.breakField()){
             if (test) {outResults.add("Sikeres művelet"); lastResult = true;}
-            else {System.out.println("Sikeres művelet");lastResult = true;}
+            else {logger.log(Level.INFO, "Sikeres művelet");lastResult = true;}
         }else  {
             if (test) {outResults.add("Sikertelen művelet"); lastResult = false;}
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 lastResult = false;
                 moves--;
             }
@@ -555,12 +559,12 @@ public class Controller {
         if(p.repair()){
             lastResult = true;
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             lastResult = false;
             if (test) outResults.add("Sikertelen művelet");
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 moves--;
             }
         }
@@ -615,12 +619,12 @@ public class Controller {
             oldPipeD.setCoords(newPumpD, pumpBD);
             
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             lastResult = false;
             if (test) outResults.add("Sikertelen művelet");
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 moves--;
             }
         }
@@ -633,12 +637,12 @@ public class Controller {
          if(player.getStandingField().set((Pipe)objectNames.get(cmd[2]), (Pipe)objectNames.get(cmd[3]))){
              lastResult = true;
              if (test) outResults.add("Sikeres művelet");
-             else System.out.println("Sikeres művelet");
+             else logger.log(Level.INFO, "Sikeres művelet");
          }else  {
              lastResult = false;
              if (test) outResults.add("Sikertelen művelet");
              else {
-                 System.out.println("Sikertelen művelet");
+                 logger.log(Level.INFO, "Sikertelen művelet");
                  moves--;
              }
          }
@@ -651,12 +655,12 @@ public class Controller {
         if(player.disconnect((Pipe)objectNames.get(cmd[2]))){
             lastResult = true;
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             lastResult = false;
             if (test) outResults.add("Sikertelen művelet");
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 moves--;
             }
         }
@@ -682,12 +686,12 @@ public class Controller {
             pd.setCoords(fromPumpD, toPumpD);
             
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             lastResult = false;
             if (test) outResults.add("Sikertelen művelet");
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 moves--;
             }
         }
@@ -707,12 +711,12 @@ public class Controller {
         
             
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             lastResult = false;
             if (test) outResults.add("Sikertelen művelet");
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 moves--;
             }
         }
@@ -732,12 +736,12 @@ public class Controller {
             ViewGame.setDrawsReverseNames(newPipe, newPipeD);
             
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             lastResult = false;
             if (test) outResults.add("Sikertelen művelet");
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 moves--;
             }
         }
@@ -750,12 +754,12 @@ public class Controller {
         if(player.makeSticky()){
             lastResult = true;
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             lastResult = false;
             if (test) outResults.add("Sikertelen művelet");
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 moves--;
             }
         }
@@ -765,16 +769,16 @@ public class Controller {
      * */
     public static void makeslippery(String[] cmd){
         Player player = (Player)objectNames.get(cmd[1]);
-        System.out.println(cmd[1]);
+        logger.log(Level.INFO, cmd[1]);
         if(player.makeSlippery()){
             lastResult = true;
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             lastResult = false;
             if (test) outResults.add("Sikertelen művelet");
             else {
-                System.out.println("Sikertelen művelet");
+                logger.log(Level.INFO, "Sikertelen művelet");
                 moves--;
             }
         }
@@ -807,25 +811,25 @@ public class Controller {
             String separator = "\\";
             String[] tmp=cmd[1].replaceAll(Pattern.quote(separator), "\\\\").split("\\\\");
             fileName = tmp[tmp.length-1];
-            System.out.println("Test name: " + fileName.replace(".out", ""));
+            logger.log(Level.INFO, "Test name: " + fileName.replace(".out", ""));
             if (result.size() != expected.size()) {
-                System.out.println("Test failed. The 2 files do not have the same amount of lines.");
+                logger.log(Level.INFO, "Test failed. The 2 files do not have the same amount of lines.");
                 return;
             }
             int errors = 0;
             if (result.size() > 0 && expected.size() > 0) {
                 for (int i = 0; i < expected.size(); i++) {
                     if (!result.get(i).equals(expected.get(i))) {
-                        System.out.println("Error in line " + (i+1) + ".\nExpected: " + expected.get(i) + ", but got: " + result.get(i));
+                        logger.log(Level.INFO, "Error in line " + (i+1) + ".\nExpected: " + expected.get(i) + ", but got: " + result.get(i));
                         errors++;
                     }
                 }
             }
             if (errors == 0 && result.size() > 0 && expected.size() > 0) {
-                System.out.println("Test succeeded.\n");
+                logger.log(Level.INFO, "Test succeeded.\n");
             }
             else {
-                System.out.println("Test failed.\n");
+                logger.log(Level.INFO, "Test failed.\n");
             }
             pipes=pumps=0;
             waterCounter.reset();
@@ -857,8 +861,8 @@ public class Controller {
      * */
     public static void list(){
         for (Object obj : objectNames.values()) {
-            System.out.print(objectReverseNames.get(obj) + " ");
-        }        System.out.println();
+            logger.log(Level.INFO, objectReverseNames.get(obj) + " ");
+        }        logger.log(Level.INFO, "");
     }
     /**
      * Function for putting a player on a field.
@@ -868,10 +872,10 @@ public class Controller {
         Player p = (Player) objectNames.get(cmd[2]);
         if(f.accept(p) != null) {
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             if (test) outResults.add("Sikertelen művelet");
-            else System.out.println("Sikertelen művelet");
+            else logger.log(Level.INFO, "Sikertelen művelet");
         }
     }
 
@@ -879,7 +883,7 @@ public class Controller {
         Steppable s = (Steppable)objectNames.get(cmd[1]);
         s.step();
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for ending a turn.
@@ -897,7 +901,7 @@ public class Controller {
                 value.step();
             }
         }
-        System.out.println("Sikeres művelet");
+        logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for countig the points for the two sides.
@@ -905,7 +909,7 @@ public class Controller {
     public static void count(String[] cmd){
         waterCounter.count();
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for restaring the game.
@@ -917,7 +921,7 @@ public class Controller {
         waterCounter.reset();
         test = false;
         pumps=pipes=0;
-        System.out.println("Sikeres művelet");
+        logger.log(Level.INFO, "Sikeres művelet");
         if(!test) gameMode = false;
     }
     /**
@@ -926,7 +930,7 @@ public class Controller {
     public static void test(String[] cmd){
         if(cmd[1].equals("true")) test=true;
         else if(cmd[1].equals("false")) test=false;
-        System.out.println("Sikeres művelet");
+        logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for signaling to the watercounter that the game ended.
@@ -934,7 +938,7 @@ public class Controller {
     public static void setend(String[] cmd){
         waterCounter.setEnd();
         if (test) outResults.add("Sikeres művelet");
-        else System.out.println("Sikeres művelet");
+        else logger.log(Level.INFO, "Sikeres művelet");
     }
     /**
      * Function for setting the in/out pipes of a pump.
@@ -943,10 +947,10 @@ public class Controller {
         Pump pump = (Pump)objectNames.get(cmd[1]);
         if(pump.set((Pipe)objectNames.get(cmd[2]), (Pipe)objectNames.get(cmd[3]))){
             if (test) outResults.add("Sikeres művelet");
-            else System.out.println("Sikeres művelet");
+            else logger.log(Level.INFO, "Sikeres művelet");
         }else  {
             if (test) outResults.add("Sikertelen művelet");
-            else System.out.println("Sikertelen művelet");
+            else logger.log(Level.INFO, "Sikertelen művelet");
         }
     }
 }
