@@ -20,6 +20,7 @@ import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
@@ -31,6 +32,7 @@ import java.util.logging.Logger;
 
 @SuppressWarnings("DuplicatedCode")
 public class Controller {
+    private Controller() {}
     static Logger logger = Logger.getLogger(Controller.class.getName());
     /**
      * If true the game is random
@@ -89,7 +91,7 @@ public class Controller {
     /**
      * List of the commands
      * */
-    public static final ArrayList<String> commandList = new ArrayList<>();
+    public static final List<String> commandList = new ArrayList<>();
 
     /**
      * Number of new pumps with commands
@@ -113,9 +115,9 @@ public class Controller {
         return objectReverseNames.get(currentPlayer);
     }
 
-    public static ArrayList<Player> getAllPlayers() { return activePlayers; }
+    public static List<Player> getAllPlayers() { return activePlayers; }
 
-    public static void SetActivePlayer(Player p) { currentPlayer = p; activePlayers.remove(0); activePlayers.add(currentPlayer); }
+    public static void setActivePlayer(Player p) { currentPlayer = p; activePlayers.remove(0); activePlayers.add(currentPlayer); }
 
     public static Player GetActivePlayer() { return currentPlayer; }
 
@@ -135,7 +137,7 @@ public class Controller {
      *Function for controlling the game.
      *Reads a command than calls a function to execute it.
      * */
-    public static void Run() throws FileNotFoundException {
+    public static void Run() {
         while(!commandList.isEmpty()) {
             String command = commandList.get(0);
             commandList.remove(0);
@@ -580,7 +582,8 @@ public class Controller {
     public static void placepump(String[] cmd){
     	//   |Pump A|===new=Pipe===|new Pump|===old=Pipe===|Pump B|
         Player p = (Player)objectNames.get(cmd[1]); //player
-        ActiveFields pumpA, pumpB;
+        ActiveFields pumpA;
+        ActiveFields pumpB;
         pumpA = pumpB = null;
         try {
         	pumpA = ((Pipe)p.getStandingField()).getFields().get(0);
