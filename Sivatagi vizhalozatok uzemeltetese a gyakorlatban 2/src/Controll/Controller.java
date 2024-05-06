@@ -38,16 +38,16 @@ public class Controller {
     /**
      * Contains the names of the objects, the keys are the objects.
      */
-    public static HashMap<String, Object> objectNames = new HashMap<>();
+    public static final HashMap<String, Object> objectNames = new HashMap<>();
 
     /**
      * Contains the objects, the keys are the names of the objects.
      */
-    public static HashMap<Object, String> objectReverseNames = new HashMap<>();
+    public static final HashMap<Object, String> objectReverseNames = new HashMap<>();
     /**
      * WaterCounter of the game
      * */
-    public static WaterCounter waterCounter = new WaterCounter();
+    public static final WaterCounter waterCounter = new WaterCounter();
     /**
      * True if the game is tested
      * */
@@ -78,12 +78,12 @@ public class Controller {
     /**
     * Current Player
     * */
-    private static Player currentPlayer;
+    private static  Player currentPlayer;
   
     /**
      * List of the commands
      * */
-    public static ArrayList<String> commandList = new ArrayList<>();
+    public static final ArrayList<String> commandList = new ArrayList<>();
 
     /**
      * Number of new pumps with commands
