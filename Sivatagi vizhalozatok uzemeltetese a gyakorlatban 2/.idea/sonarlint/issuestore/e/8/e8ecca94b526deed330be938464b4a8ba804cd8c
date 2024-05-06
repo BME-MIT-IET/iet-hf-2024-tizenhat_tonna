@@ -1,10 +1,0 @@
-
-2
-java:S1643g"Use a StringBuilder instead.(“ç†’
-7
-java:S1643t"Use a StringBuilder instead.(êÿ±ëúÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¶…Íüÿÿÿÿ
-4
-java:S2119'"Save and re-use this "Random".(¡Å”¦
-4
-java:S21196"Save and re-use this "Random".(¡Å”¦

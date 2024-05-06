@@ -1,16 +1,0 @@
-
-E
-java:S1066M"/Merge this if statement with the enclosing one.(õ›·ä
-g	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚Ä›
-g	java:S117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ïÅ±
-3
-java:S1643‰"Use a StringBuilder instead.(“ç†’
-8
-java:S1643”"Use a StringBuilder instead.(êÿ±ëúÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¶…Íüÿÿÿÿ
-m
-java:S3776J"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¼Š”£ùÿÿÿÿ
-9
-java:S2119\"Save and re-use this "Random".(§¾¬íûÿÿÿÿ
-i
-java:S3776€"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Á»›ê

@@ -1,30 +1,0 @@
-
-š
-java:S2293\"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤±°ÓşÿÿÿÿJ$bcd4584a-dd8c-4302-9d4e-3dc857f5e410
-Y
-java:S1643Û"Use a StringBuilder instead.(“ç†’J$57d8ba66-7072-4f07-88d5-bf752ecc9864
-X
-java:S1643å"Use a StringBuilder instead.(˜ÿËlJ$ae79b7eb-7ef7-4004-be49-1bfbeb934e87
-š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æ³í›şÿÿÿÿJ$dbaf58b8-3e92-4a88-9d3a-dbc11405edcd
-É
-java:S2681•"†This line will not be executed conditionally; only the first line of this 2-line block will be. The rest will execute unconditionally.(ˆ‡úşÿÿÿÿJ$c53ac70d-a3a4-4ebe-875b-eac58e46f4bd
-`
-java:S2119ˆ"Save and re-use this "Random".(¹•üıÿÿÿÿJ$71ccab2f-98b0-4deb-b38f-91d8dec65749
-[
-java:S2119"Save and re-use this "Random".(¡Å”¦J$25021967-1918-4c80-939b-ef3e95c5fb82
-r
-java:S1854ó"5Remove this useless assignment to local variable "r".(¡Å”¦J$75344fde-a2f4-44c1-86ae-da1e225ce676
-[
-java:S2119ó"Save and re-use this "Random".(¡Å”¦J$3a8a3415-df3c-43f1-9b3b-aaa11f545bb5
-c
-java:S1481ó"&Remove this unused "r" local variable.(¡Å”¦J$bde70c69-ac0d-450f-9dcd-f0fb08800bc2
-`
-java:S2119ù"Save and re-use this "Random".(Ã®ıßúÿÿÿÿJ$c5f1245d-f8d6-4d49-aac5-ef5d33f2e8fe
-i
-java:S1125Œ"'Remove the unnecessary boolean literal.(íŞ›éüÿÿÿÿJ$0f81b316-b1a4-4dd3-82e9-1d96f4c8f6eb
-`
-java:S2119£"Save and re-use this "Random".(ÒşÅşÿÿÿÿJ$81199bba-e038-4669-bed8-8b949476bf1f
-`
-java:S2119µ"Save and re-use this "Random".(ÒşÅşÿÿÿÿJ$56cc8d41-ddc9-4aab-8321-30b327f14961
-|
-java:S1117ß":Rename "fields" which hides the field declared at line 40.(ş»ùÿÿÿÿJ$1576a721-affe-48b5-96f2-fa65d61774a2
