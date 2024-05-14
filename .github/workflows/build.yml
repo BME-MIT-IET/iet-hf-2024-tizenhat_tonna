@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - Manuális-és-statikus-ellenőrzés
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
