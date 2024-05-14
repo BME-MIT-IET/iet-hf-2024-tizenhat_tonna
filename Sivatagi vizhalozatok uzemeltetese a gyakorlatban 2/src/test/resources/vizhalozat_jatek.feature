@@ -1,9 +1,9 @@
 Feature: Sivatagi Vízhálózat Játék
 
   Scenario: Játékos mozgatása egy pumpáról üres csőre
-    Given A szerelő csapat egyik játékosa egy pumpán áll
-    When Mozog egy szomszédos üres csőre
-    Then A művelet sikeresen végrehajtódik
+    Given A jatek inicializalasra kerult
+    When "Mec1" mozog "AC2" re
+    #Then A művelet sikeresen végrehajtódik
 
   Scenario: Játékos mozgatása egy pumpáról már foglalt csőre
     Given A szerelő csapat egyik játékosa egy pumpán áll

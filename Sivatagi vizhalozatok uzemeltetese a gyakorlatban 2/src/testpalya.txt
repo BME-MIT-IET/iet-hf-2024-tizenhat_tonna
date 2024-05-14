@@ -1,0 +1,19 @@
+cistern cistern2 water:0 draw:100:100
+spring spring2 2000 draw:650:100
+pump A 200 water:20 broken:true draw:200:100
+pump B 200 water:10 draw:500:100
+pipe AC2 100 draw:225:125:125:125
+pipe AB 100 draw:225:125:525:125
+pipe BS2 100 draw:525:125:675:125
+connectpipe AC2 A
+connectpipe AC2 cistern2
+connectpipe AB A
+connectpipe AB B
+connectpipe BS2 B
+connectpipe BS2 spring2
+setpump A AB AC2
+setpump B BS2 AB
+mechanic Mec1 A
+addplayer A Mec1
+saboteur Sab1 AB
+addplayer AB Sab1
