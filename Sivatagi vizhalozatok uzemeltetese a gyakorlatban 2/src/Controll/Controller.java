@@ -233,8 +233,10 @@ public class Controller {
         try {
             outResults.clear();
             System.out.println(cmd);
-            Scanner scanner = new Scanner(new File(cmd));
-            filePath = cmd;
+            String rootDirectory = System.getProperty("user.dir");
+            String modifiedPath=cmd.replace("/", File.separator).replace("\\", File.separator);
+            Scanner scanner = new Scanner(new File(rootDirectory+File.separator+"Sivatagi vizhalozatok uzemeltetese a gyakorlatban 2"+ File.separator+modifiedPath));
+            filePath = modifiedPath;
             String separator = "\\";
             String[] tmp=cmd.replaceAll(Pattern.quote(separator), "\\\\").split("\\\\");
             fileName = tmp[tmp.length-1];
