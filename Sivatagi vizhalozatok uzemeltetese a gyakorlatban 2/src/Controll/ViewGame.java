@@ -42,14 +42,14 @@ public class ViewGame extends JFrame implements ActionListener {
     /**
      * Controll buttons
      */
-    JButton moveButton;
-    JButton repairButton;
-    JButton breakButton;
-    JButton makeSlipperyButton;
-    JButton makeStickyButton;
-    JButton pickUpButton;
-    JButton putDownButton;
-    JButton setPumpButton;
+    static JButton moveButton;
+    static JButton repairButton;
+    static JButton breakButton;
+    static JButton makeSlipperyButton;
+    static JButton makeStickyButton;
+    static JButton pickUpButton;
+    static JButton putDownButton;
+    static JButton setPumpButton;
 
     /**
      * Last action
@@ -119,13 +119,27 @@ public class ViewGame extends JFrame implements ActionListener {
 		}
     };
 
+    public static Menu menu;
+
     /**
      * Main method
      * @param args
      */
     public static void main(String[] args){
-        Menu menu = new Menu("Menu", "White");
+        // measure startup time
+        long startTime = System.currentTimeMillis();
+
+        menu = new Menu("Menu", "White");
         menu.showMenu();
+
+        // measure startup time
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        System.out.println("Startup time: " + duration + "ms");
+    }
+
+    public static Menu getMenuInstance() {
+        return menu;
     }
 
     /**
