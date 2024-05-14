@@ -12,7 +12,7 @@ import java.util.Random;
  * */
 @SuppressWarnings("UnusedAssignment")
 public class Pump extends ActiveFields {
-
+    private Random random = new Random();
     /**
      * The amount of water in the tank. Default value is 0.
      */
@@ -73,23 +73,21 @@ public class Pump extends ActiveFields {
     @Override
     public void step() {
         super.step();
-        if(!(super.isBroken())) {
-        	if(waterTo != -1 && waterFrom != -1) {
-	            super.setWater((this.getPipes().get(waterTo)).fillInWater(super.getWater()));
-	            int newWater = (this.getPipes().get(waterFrom)).getWater();
-	            if(newWater < 0) this.getPipes().get(waterFrom).fillInWater(-newWater);
-	            else{
-	                if(super.getWaterNoChange() + newWater > tank){
-	                    super.setWater(tank);
-	                    this.getPipes().get(waterFrom).fillInWater(newWater-tank);
-	                }
-	                else super.setWater(super.getWaterNoChange() + newWater);
-	            }
-        	}
+        if(!(super.isBroken()) && waterTo != -1 && waterFrom != -1) {
+            super.setWater((this.getPipes().get(waterTo)).fillInWater(super.getWater()));
+            int newWater = (this.getPipes().get(waterFrom)).getWater();
+            if(newWater < 0) this.getPipes().get(waterFrom).fillInWater(-newWater);
+            else{
+                if(super.getWaterNoChange() + newWater > tank){
+                    super.setWater(tank);
+                    this.getPipes().get(waterFrom).fillInWater(newWater-tank);
+                }
+                else super.setWater(super.getWaterNoChange() + newWater);
+            }
         }
         int r;
         if (!Controller.isTest()) {
-            r = new Random().nextInt(31);
+            r = random.nextInt(31);
 
             if(r < 3) {
                 super.setBroken(true);
@@ -126,29 +124,13 @@ public class Pump extends ActiveFields {
      */
     @Override
     public String toString() {
-        ArrayList<Player> players = this.getPlayers();
 
-        String playersNames = "null";
 
-        for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
-            if (i != players.size() - 1) {
-                playersNames += ", ";
-            }
-        }
+        String playersNames = getPlayerNames();
 
-        ArrayList<Pipe> pipes = this.getPipes();
-        String pipesNames ="null";
-        if(pipes != null) {
-            for (int i = 0; i < pipes.size(); i++) {
-                if (i == 0) pipesNames = "";
-                pipesNames += Controller.objectReverseNames.get(pipes.get(i));
-                if (i != pipes.size() - 1) {
-                    pipesNames += ", ";
-                }
-            }
-        }
+
+
+        String pipesNames = getPipeNames();
 
 
         String SWaterFrom="";
@@ -171,5 +153,34 @@ public class Pump extends ActiveFields {
                 + "\ntank: " + this.getTank()
                 + "\nwaterFrom: " +SWaterFrom
                 + "\nwaterTo: " +SWaterTo  + "\n";
+    }
+
+    private String getPlayerNames() {
+        ArrayList<Player> players = this.getPlayers();
+        String playersNames = "null";
+        for (int i = 0; i < players.size(); i++) {
+            if(i == 0) playersNames = "";
+            playersNames += Controller.objectReverseNames.get(players.get(i));
+            if (i != players.size() - 1) {
+                playersNames += ", ";
+            }
+        }
+        return playersNames;
+    }
+
+
+    private String getPipeNames(){
+        ArrayList<Pipe> pipes = this.getPipes();
+        String pipesNames ="null";
+        if(pipes != null) {
+            for (int i = 0; i < pipes.size(); i++) {
+                if (i == 0) pipesNames = "";
+                pipesNames += Controller.objectReverseNames.get(pipes.get(i));
+                if (i != pipes.size() - 1) {
+                    pipesNames += ", ";
+                }
+            }
+        }
+        return pipesNames;
     }
 }
