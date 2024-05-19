@@ -195,17 +195,17 @@ public class Controller {
             switch(cmd[0]) {
                 case("show"): show(cmd); break;
                 case("showobject"): showobject(cmd); break;
-                case("move"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else move(cmd); break;
-                case("breakfield"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else breakfield(cmd); break;
-                case("repair"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else repair(cmd); break;
-                case("placepump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else placepump(cmd); break;
-                case("set"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else set(cmd); break;
-                case("disconnect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else disconnect(cmd); break;
-                case("connect"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else connect(cmd); break;
-                case("getpump"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else getpump(cmd); break;
-                case("pickuppipe"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER);else pickuppipe(cmd); break;
-                case("makesticky"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else makesticky(cmd); break;
-                case("makeslippery"): moves++; if (!((Player)objectNames.get(cmd[1])).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else makeslippery(cmd); break;
+                case("move"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else move(cmd); break;
+                case("breakfield"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else breakfield(cmd); break;
+                case("repair"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else repair(cmd); break;
+                case("placepump"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else placepump(cmd); break;
+                case("set"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else set(cmd); break;
+                case("disconnect"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else disconnect(cmd); break;
+                case("connect"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else connect(cmd); break;
+                case("getpump"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else getpump(cmd); break;
+                case("pickuppipe"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER);else pickuppipe(cmd); break;
+                case("makesticky"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else makesticky(cmd); break;
+                case("makeslippery"): moves++; if (!objectNames.get(cmd[1]).equals(currentPlayer)) logger.log(Level.INFO, StringResourceController.WRONG_PLAYER); else makeslippery(cmd); break;
                 case("save"): save(cmd); break;
                 case("testall"): testAll(cmd); break;
                 case("list"): list(); break;
@@ -941,7 +941,8 @@ public class Controller {
         waterCounter.count();
         //léptetés
          for (Object obj : objectNames.values()) {
-            if(obj instanceof Steppable value) {
+            if(obj instanceof Steppable) {
+                Steppable value = (Steppable) obj;
                 value.step();
             }
         }

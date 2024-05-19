@@ -60,32 +60,35 @@ public class Spring extends ActiveFields{
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
-
-        String playersNames = "null";
-
+        StringBuilder playerBuilder = new StringBuilder("null");
         for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
+            if(i == 0) playerBuilder.delete(0,3);
+            playerBuilder.append(Controller.objectReverseNames.get(players.get(i)));
             if (i != players.size() - 1) {
-                playersNames += ", ";
+                playerBuilder.append(", ");
             }
         }
 
+
+
+
         ArrayList<Pipe> pipes = this.getPipes();
-        String pipesNames ="null";
-        for (int i = 0; i < pipes.size(); i++) {
-            if(i == 0) pipesNames = "";
-            pipesNames += Controller.objectReverseNames.get(pipes.get(i));
-            if (i != pipes.size() - 1) {
-                pipesNames += ", ";
+        StringBuilder pipeBuilder = new StringBuilder("null");
+        if(pipes != null) {
+            for (int i = 0; i < pipes.size(); i++) {
+                if (i == 0) pipeBuilder.delete(0,3);
+                pipeBuilder.append(Controller.objectReverseNames.get(pipes.get(i)));
+                if (i != pipes.size() - 1) {
+                    pipeBuilder.append(", ");
+                }
             }
         }
         return "name: "+ Controller.objectReverseNames.get(this)
                 + "\noccupied: " + this.isOccupied()
                 + "\nwater: " + getWaterNoChange()
                 + "\nbroken: " + this.isBroken()
-                + "\nplayers: " + playersNames
-                + "\npipes: " + pipesNames
+                + "\nplayers: " + playerBuilder
+                + "\npipes: " + pipeBuilder
                 + "\nwaterOut: " + this.getWaterOut()
                 + "\nmaxOutWater: " + this.getMaxOutWater() + "\n";
     }

@@ -133,14 +133,14 @@ public class Pump extends ActiveFields {
         String pipesNames = getPipeNames();
 
 
-        String SWaterFrom="";
-        String SWaterTo="";
+        String sWaterFrom="";
+        String sWaterTo="";
         if(getWaterFrom() == -1 && getWaterTo() == -1 ){
-            SWaterFrom = SWaterTo = "null";
+            sWaterFrom = sWaterTo = "null";
         }
         else{
-            SWaterFrom = ""+Controller.objectReverseNames.get(getPipes().get(getWaterFrom()));
-            SWaterTo = ""+Controller.objectReverseNames.get(getPipes().get(getWaterTo()));
+            sWaterFrom = ""+Controller.objectReverseNames.get(getPipes().get(getWaterFrom()));
+            sWaterTo = ""+Controller.objectReverseNames.get(getPipes().get(getWaterTo()));
         }
 
 
@@ -151,36 +151,36 @@ public class Pump extends ActiveFields {
                 + "\nplayers: " + playersNames
                 + "\npipes: " + pipesNames
                 + "\ntank: " + this.getTank()
-                + "\nwaterFrom: " +SWaterFrom
-                + "\nwaterTo: " +SWaterTo  + "\n";
+                + "\nwaterFrom: " +sWaterFrom
+                + "\nwaterTo: " +sWaterTo  + "\n";
     }
 
     private String getPlayerNames() {
         ArrayList<Player> players = this.getPlayers();
-        String playersNames = "null";
+        StringBuilder playerBuilder = new StringBuilder("null");
         for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
+            if(i == 0) playerBuilder.delete(0,3);
+            playerBuilder.append(Controller.objectReverseNames.get(players.get(i)));
             if (i != players.size() - 1) {
-                playersNames += ", ";
+                playerBuilder.append(", ");
             }
         }
-        return playersNames;
+        return playerBuilder.toString();
     }
 
 
     private String getPipeNames(){
         ArrayList<Pipe> pipes = this.getPipes();
-        String pipesNames ="null";
+        StringBuilder pipeBuilder = new StringBuilder("null");
         if(pipes != null) {
             for (int i = 0; i < pipes.size(); i++) {
-                if (i == 0) pipesNames = "";
-                pipesNames += Controller.objectReverseNames.get(pipes.get(i));
+                if (i == 0) pipeBuilder.delete(0,3);
+                pipeBuilder.append(Controller.objectReverseNames.get(pipes.get(i)));
                 if (i != pipes.size() - 1) {
-                    pipesNames += ", ";
+                    pipeBuilder.append(", ");
                 }
             }
         }
-        return pipesNames;
+        return pipeBuilder.toString();
     }
 }

@@ -336,24 +336,22 @@ public class Pipe extends Field {
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
-
-        String playersNames = "null";
-
+        StringBuilder playerBuilder = new StringBuilder("null");
         for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
+            if(i == 0) playerBuilder.delete(0,3);
+            playerBuilder.append(Controller.objectReverseNames.get(players.get(i)));
             if (i != players.size() - 1) {
-                playersNames += ", ";
+                playerBuilder.append(", ");
             }
         }
 
-        ArrayList<ActiveFields> loaclFields = this.getFields();
-        String fieldsNames ="null";
-        for (int i = 0; i < loaclFields.size(); i++) {
-            if(i == 0) fieldsNames = "";
-            fieldsNames += Controller.objectReverseNames.get(loaclFields.get(i));
-            if (i != loaclFields.size() - 1) {
-                fieldsNames += ", ";
+        ArrayList<ActiveFields> localFields = this.getFields();
+        StringBuilder fieldBuilder = new StringBuilder("null");
+        for (int i = 0; i < localFields.size(); i++) {
+            if(i == 0) fieldBuilder.delete(0,3);
+            fieldBuilder.append(Controller.objectReverseNames.get(localFields.get(i)));
+            if (i != localFields.size() - 1) {
+                fieldBuilder.append(", ");
             }
         }
 
@@ -361,8 +359,8 @@ public class Pipe extends Field {
                 + "\noccupied: " + this.isOccupied()
                 + "\nwater: " + getWaterNoChange()
                 + "\nbroken: " + this.isBroken()
-                + "\nplayers: " + playersNames
-                + "\nfields: " + fieldsNames
+                + "\nplayers: " + playerBuilder
+                + "\nfields: " + fieldBuilder
                 + "\ncapacity: " + this.getCapacity()
                 + "\nbreakable: " + this.getBreakable()
                 + "\nrfluidtime: " + this.getRemainingFluidTime()
