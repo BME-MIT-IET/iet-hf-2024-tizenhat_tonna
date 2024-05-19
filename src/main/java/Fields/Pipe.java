@@ -262,6 +262,7 @@ public class Pipe extends Field {
      * @param p The player to be removed.
      * @return True if the player was removed.
      */
+    @Override
     public boolean removePlayer(Player p){
         if(fluid == Fluid.STICKY){
             if(leave){
@@ -280,6 +281,7 @@ public class Pipe extends Field {
      * Methods for making the pipe slippery.
      * @return True if the pipe successfully became slippery.
      */
+    @Override
     public boolean makeSlippery(){
         if(fluid == Fluid.STICKY) return false;
         if(remainingFluidTime == 0){
@@ -298,6 +300,7 @@ public class Pipe extends Field {
      * Methods for making the pipe sticky.
      * @return True if the pipe successfully became sticky.
      */
+    @Override
     public  boolean makeSticky(){
         if(fluid == Fluid.SLIPPERY) return false;
         if(remainingFluidTime == 0){
@@ -317,6 +320,7 @@ public class Pipe extends Field {
      * Reduces the amount of time left until the pipe becomes dry.
      * If the time is 0 makes the pipe dry.
      */
+    @Override
     public void step(){
         if(breakable > 0){
             breakable--;

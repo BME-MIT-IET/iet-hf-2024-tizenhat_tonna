@@ -837,36 +837,35 @@ public class Controller {
         catch(FileNotFoundException e) {
             logger.log(Level.WARNING, StringResourceController.FILE_NOT_FOUND);
         }
-        try {
-            Scanner scannerResult = new Scanner(new File(cmd[1]));
-            Scanner scannerExpected = new Scanner((new File(cmd[1].replace(".out", ".test"))));
-            ArrayList<String> result = new ArrayList<>();
-            ArrayList<String> expected = new ArrayList<>();
-            while (scannerResult.hasNextLine()){
-                result.add(scannerResult.nextLine().strip());
+        try(Scanner scannerResult = new Scanner(new File(cmd[1]))) {
+            try(Scanner scannerExpected = new Scanner((new File(cmd[1].replace(".out", ".test"))));) {
+                ArrayList<String> result = new ArrayList<>();
+                ArrayList<String> expected = new ArrayList<>();
+                while (scannerResult.hasNextLine()) {
+                    result.add(scannerResult.nextLine().strip());
+                }
+                while (scannerExpected.hasNextLine()) {
+                    expected.add(scannerExpected.nextLine().strip());
+                }
+                String separator = "\\";
+                String[] tmp = cmd[1].replaceAll(Pattern.quote(separator), "\\\\").split("\\\\");
+                fileName = tmp[tmp.length - 1];
+                logger.log(Level.INFO, () -> "Test name: " + fileName.replace(".out", ""));
+                if (result.size() != expected.size()) {
+                    logger.log(Level.INFO, "Test failed. The 2 files do not have the same amount of lines.");
+                    return;
+                }
+                int errors = getErros(result, expected);
+                if (errors == 0 && !result.isEmpty() && !expected.isEmpty()) {
+                    logger.log(Level.INFO, "Test succeeded.\n");
+                } else {
+                    logger.log(Level.INFO, "Test failed.\n");
+                }
+                pipes = pumps = 0;
+                waterCounter.reset();
+                objectNames.clear();
+                objectReverseNames.clear();
             }
-            while (scannerExpected.hasNextLine()){
-                expected.add(scannerExpected.nextLine().strip());
-            }
-            String separator = "\\";
-            String[] tmp=cmd[1].replaceAll(Pattern.quote(separator), "\\\\").split("\\\\");
-            fileName = tmp[tmp.length-1];
-            logger.log(Level.INFO, () -> "Test name: " + fileName.replace(".out", ""));
-            if (result.size() != expected.size()) {
-                logger.log(Level.INFO, "Test failed. The 2 files do not have the same amount of lines.");
-                return;
-            }
-            int errors = getErros(result, expected);
-            if (errors == 0 && !result.isEmpty() && !expected.isEmpty()) {
-                logger.log(Level.INFO, "Test succeeded.\n");
-            }
-            else {
-                logger.log(Level.INFO, "Test failed.\n");
-            }
-            pipes=pumps=0;
-            waterCounter.reset();
-            objectNames.clear();
-            objectReverseNames.clear();
         }
         catch(FileNotFoundException e) {
             logger.log(Level.WARNING, StringResourceController.FILE_NOT_FOUND);
