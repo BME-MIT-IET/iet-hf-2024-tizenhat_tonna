@@ -241,7 +241,7 @@ public class Controller {
             fileName = tmp[tmp.length-1];
             while (scanner.hasNextLine()){
                 commandList.add(scanner.nextLine());
-                logger.log(Level.INFO, commandList.get(commandList.size()-1));
+                logger.log(Level.INFO, ()-> commandList.get(commandList.size()-1));
             }
             if (test) {
                 commandList.add("save " + filePath.replace(".in", ".out"));
@@ -267,7 +267,7 @@ public class Controller {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, StringResourceController.FILE_NOT_FOUND);
         }
     }
 
@@ -281,13 +281,21 @@ public class Controller {
             commands[i-3] = cmd[i].split(":");
         }
 
-        for(int i=0; i<commands.length; i++){
-            switch (commands[i][0]){
-                case StringResourceController.WATER: tmp.setWater(Integer.parseInt(commands[i][1])); break;
-                case "broken": tmp.setBroken(Boolean.parseBoolean(commands[i][1])); break;
-                case "draw" : PumpDraw pd = new PumpDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]));
-                    ViewGame.setDrawsNames(pd, tmp); ViewGame.setDrawsReverseNames(tmp, pd); break;
-                default: break;
+        for (String[] command : commands) {
+            switch (command[0]) {
+                case StringResourceController.WATER:
+                    tmp.setWater(Integer.parseInt(command[1]));
+                    break;
+                case "broken":
+                    tmp.setBroken(Boolean.parseBoolean(command[1]));
+                    break;
+                case "draw":
+                    PumpDraw pd = new PumpDraw(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+                    ViewGame.setDrawsNames(pd, tmp);
+                    ViewGame.setDrawsReverseNames(tmp, pd);
+                    break;
+                default:
+                    break;
             }
         }
         objectNames.put(cmd[1], tmp);
@@ -304,24 +312,45 @@ public class Controller {
         for(int i=3; i<cmd.length; i++){
             commands[i-3] = cmd[i].split(":");
         }
-        for(int i=0; i<commands.length; i++){
-            switch (commands[i][0]){
+        for (String[] command : commands) {
+            switch (command[0]) {
                 case "fluid":
-                    switch (commands[i][1]){
-                        case "dry": tmp.setFluid(Fluid.DRY); break;
-                        case "sticky": tmp.setFluid(Fluid.STICKY); break;
-                        case "slippery": tmp.setFluid(Fluid.SLIPPERY); break;
-                        default: break;
+                    switch (command[1]) {
+                        case "dry":
+                            tmp.setFluid(Fluid.DRY);
+                            break;
+                        case "sticky":
+                            tmp.setFluid(Fluid.STICKY);
+                            break;
+                        case "slippery":
+                            tmp.setFluid(Fluid.SLIPPERY);
+                            break;
+                        default:
+                            break;
                     }
                     break;
-                case "rfluidtime": tmp.setFluidTime(Integer.parseInt(commands[i][1])); break;
-                case "breakable": tmp.setBreakable(Integer.parseInt(commands[i][1])); break;
-                case "broken": tmp.setBroken(Boolean.parseBoolean(commands[i][1])); break;
-                case StringResourceController.WATER: tmp.setWater(Integer.parseInt(commands[i][1])); break;
-                case "leave": tmp.setLeave(Boolean.parseBoolean(commands[i][1])); break;
-                case "draw" : PipeDraw pd = new PipeDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]), Integer.parseInt(commands[i][3]), Integer.parseInt(commands[i][4]));
-                ViewGame.setDrawsNames(pd, tmp); ViewGame.setDrawsReverseNames(tmp, pd); break;
-                default: break;
+                case "rfluidtime":
+                    tmp.setFluidTime(Integer.parseInt(command[1]));
+                    break;
+                case "breakable":
+                    tmp.setBreakable(Integer.parseInt(command[1]));
+                    break;
+                case "broken":
+                    tmp.setBroken(Boolean.parseBoolean(command[1]));
+                    break;
+                case StringResourceController.WATER:
+                    tmp.setWater(Integer.parseInt(command[1]));
+                    break;
+                case "leave":
+                    tmp.setLeave(Boolean.parseBoolean(command[1]));
+                    break;
+                case "draw":
+                    PipeDraw pd = new PipeDraw(Integer.parseInt(command[1]), Integer.parseInt(command[2]), Integer.parseInt(command[3]), Integer.parseInt(command[4]));
+                    ViewGame.setDrawsNames(pd, tmp);
+                    ViewGame.setDrawsReverseNames(tmp, pd);
+                    break;
+                default:
+                    break;
 
             }
         }
@@ -340,12 +369,18 @@ public class Controller {
         for(int i=2; i<cmd.length; i++){
             commands[i-2] = cmd[i].split(":");
         }
-        for(int i=0; i<commands.length; i++) {
-            switch (commands[i][0]) {
-                case StringResourceController.WATER: tmp.setWater(Integer.parseInt(commands[0][1])); break;
-                case "draw" : CisternDraw cd = new CisternDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]));
-                    ViewGame.setDrawsNames(cd, tmp); ViewGame.setDrawsReverseNames(tmp, cd); break;
-                default: break;
+        for (String[] command : commands) {
+            switch (command[0]) {
+                case StringResourceController.WATER:
+                    tmp.setWater(Integer.parseInt(commands[0][1]));
+                    break;
+                case "draw":
+                    CisternDraw cd = new CisternDraw(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+                    ViewGame.setDrawsNames(cd, tmp);
+                    ViewGame.setDrawsReverseNames(tmp, cd);
+                    break;
+                default:
+                    break;
             }
         }
         objectNames.put(cmd[1], tmp);
@@ -363,12 +398,11 @@ public class Controller {
         for(int i=2; i<cmd.length; i++){
             commands[i-2] = cmd[i].split(":");
         }
-        for(int i=0; i<commands.length; i++) {
-            switch (commands[i][0]) {
-                case "draw" : SpringDraw sd = new SpringDraw(Integer.parseInt(commands[i][1]), Integer.parseInt(commands[i][2]));
-                    ViewGame.setDrawsNames(sd, tmp); ViewGame.setDrawsReverseNames(tmp, sd); break;
-                default: break;
-
+        for (String[] command : commands) {
+            if (command[0].equals("draw")) {
+                SpringDraw sd = new SpringDraw(Integer.parseInt(command[1]), Integer.parseInt(command[2]));
+                ViewGame.setDrawsNames(sd, tmp);
+                ViewGame.setDrawsReverseNames(tmp, sd);
             }
         }
         objectNames.put(cmd[1], tmp);
@@ -402,15 +436,16 @@ public class Controller {
         for(int i=3; i<cmd.length; i++){
             commands[i-3] = cmd[i].split(":");
         }
-        for(int i=0; i<commands.length; i++) {
-            switch (commands[i][0]) {
+        for (String[] command : commands) {
+            switch (command[0]) {
                 case "pump":
-                    tmp.setHoldingPump((Pump)objectNames.get(commands[i][1]));
+                    tmp.setHoldingPump((Pump) objectNames.get(command[1]));
                     break;
                 case "pipe":
-                    tmp.setHoldingPipe((Pipe)objectNames.get(commands[i][1]));
+                    tmp.setHoldingPipe((Pipe) objectNames.get(command[1]));
                     break;
-                default: break;
+                default:
+                    break;
 
             }
         }
@@ -488,7 +523,7 @@ public class Controller {
                 else logger.log(Level.INFO, p.toString());
                 break;
             case "field":
-                if (test) outResults.add(objectReverseNames.get(p.getStandingField()).toString());
+                if (test) outResults.add(objectReverseNames.get(p.getStandingField()));
                 else logger.log(Level.INFO, objectReverseNames.get(p.getStandingField()));
                 break;
             default: break;
@@ -500,7 +535,7 @@ public class Controller {
     public static void showobject(String[] cmd){
         Object object = objectNames.get(cmd[1]);
         if (test) outResults.add(object.toString());
-        else logger.log(Level.INFO, object.toString());
+        else logger.log(Level.INFO, object::toString);
     }
     /**
      * Function for moving a player to a field.
@@ -582,9 +617,10 @@ public class Controller {
         	pumpA = ((Pipe)p.getStandingField()).getFields().get(0);
         	pumpB = ((Pipe)p.getStandingField()).getFields().get(1);
         } catch(Exception e) {
-        	
+            logger.log(Level.WARNING, StringResourceController.INVALID_ACTION);
         }
-    	
+
+        assert p != null;
         Pump hp = ((Mechanic)p).getHoldingPump(); //new pump
         Pipe pipe = p.placePump(); //new pipe
         if(pipe != null ){
@@ -677,11 +713,14 @@ public class Controller {
         try {
         	holdedPipe = ((Mechanic)player).getHoldingPipe();
         	standing = (Pump)player.getStandingField();
-        } catch(Exception e) {}
+        } catch(Exception e) {
+            logger.log(Level.WARNING, StringResourceController.INVALID_ACTION);
+        }
         if(player.connect()){
             lastResult = true;
             
             PipeDraw pd = (PipeDraw)ViewGame.objectDrawReverseNames.get(holdedPipe);
+            assert holdedPipe != null;
             Drawable toPumpD = ViewGame.objectDrawReverseNames.get(holdedPipe.getFields().get(0));
             Drawable fromPumpD = ViewGame.objectDrawReverseNames.get(standing);
             pd.setCoords(fromPumpD, toPumpD);
@@ -728,7 +767,7 @@ public class Controller {
     public static void pickuppipe(String[] cmd){
         Player player = (Player)objectNames.get(cmd[1]);
         if(player.pickUpPipe()){
-            lastResult = lastResult && true;
+            lastResult = true;
             
             //legyen már az új csőnek drawable-je is
             Pipe newPipe = ((Mechanic)player).getHoldingPipe();
@@ -791,8 +830,8 @@ public class Controller {
      * */
     public static void save(String[] cmd) {
         try (PrintWriter out = new PrintWriter(cmd[1].replace(".in", ".out"))) {
-            for (int i = 0; i < outResults.size(); i++) {
-                out.println(outResults.get(i));
+            for (String outResult : outResults) {
+                out.println(outResult);
             }
         }
         catch(FileNotFoundException e) {
@@ -812,7 +851,7 @@ public class Controller {
             String separator = "\\";
             String[] tmp=cmd[1].replaceAll(Pattern.quote(separator), "\\\\").split("\\\\");
             fileName = tmp[tmp.length-1];
-            logger.log(Level.INFO, "Test name: " + fileName.replace(".out", ""));
+            logger.log(Level.INFO, () -> "Test name: " + fileName.replace(".out", ""));
             if (result.size() != expected.size()) {
                 logger.log(Level.INFO, "Test failed. The 2 files do not have the same amount of lines.");
                 return;
@@ -840,7 +879,8 @@ public class Controller {
         if (!result.isEmpty() && !expected.isEmpty()) {
             for (int i = 0; i < expected.size(); i++) {
                 if (!result.get(i).equals(expected.get(i))) {
-                    logger.log(Level.INFO, "Error in line " + (i+1) + ".\nExpected: " + expected.get(i) + ", but got: " + result.get(i));
+                    int finalI = i;
+                    logger.log(Level.INFO, () -> "Error in line " + (finalI +1) + ".\nExpected: " + expected.get(finalI) + ", but got: " + result.get(finalI));
                     errors++;
                 }
             }
@@ -866,7 +906,7 @@ public class Controller {
      * */
     public static void list(){
         for (Object obj : objectNames.values()) {
-            logger.log(Level.INFO, objectReverseNames.get(obj) + " ");
+            logger.log(Level.INFO, () -> objectReverseNames.get(obj) + " ");
         }        logger.log(Level.INFO, "");
     }
     /**
@@ -901,8 +941,7 @@ public class Controller {
         waterCounter.count();
         //léptetés
          for (Object obj : objectNames.values()) {
-            if(obj instanceof Steppable) {
-                Steppable value = (Steppable)obj;
+            if(obj instanceof Steppable value) {
                 value.step();
             }
         }

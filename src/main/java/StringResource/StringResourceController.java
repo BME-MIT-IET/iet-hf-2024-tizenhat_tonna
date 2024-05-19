@@ -9,5 +9,5 @@ public final class StringResourceController {
     public static final String GOOD_ACTION = "Sikeres művelet";
     public static final String WATER = "water";
     public static final String RANDOM_ON = "A véletlen események be lettek kapcsolva.";
-
+    public static final String INVALID_ACTION = "A műveletet nem lehet végrehajtani";
 }

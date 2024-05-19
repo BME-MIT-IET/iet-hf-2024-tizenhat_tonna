@@ -1,0 +1,45 @@
+
+”
+java:S1104\"QMake pipes a static final constant or non-public and provide accessors if needed.(ìÄİ°8Ù’È•ù1J$df39d551-021b-43da-afaa-225c85c6e54a
+™
+java:S1104`"QMake pumps a static final constant or non-public and provide accessors if needed.(æ©µ›ıÿÿÿÿ8Ù’È•ù1J$dd241379-a2f3-42f4-b1e7-6b6dba8c37ee
+–
+java:S1104f"TMake gameMode a static final constant or non-public and provide accessors if needed.(õ–88Ú’È•ù1J$f5292ee6-d3d8-4286-9288-3450c7c9c61d
+”
+java:S1104h"QMake moves a static final constant or non-public and provide accessors if needed.(ãÂ¡ƒ8Ú’È•ù1J$2d211d90-1681-45f9-b3fc-e2bc0d90ba4b
+
+java:S1104i"VMake lastResult a static final constant or non-public and provide accessors if needed.(Ùş¾şÿÿÿÿ8Ú’È•ù1J$d005561a-92fa-4379-9c30-ca16881f29a3
+n
+java:S1444\"+Make this "public static pipes" field final(ìÄİ°8Û’È•ù1J$2d22150a-13d8-4b6d-8546-4167981fd537
+s
+java:S1444`"+Make this "public static pumps" field final(æ©µ›ıÿÿÿÿ8Û’È•ù1J$31ef74c8-bc81-4d6d-82e5-1d28a8752c88
+p
+java:S1444f".Make this "public static gameMode" field final(õ–88Û’È•ù1J$82c51209-55bb-437c-8818-8e89675e371e
+n
+java:S1444h"+Make this "public static moves" field final(ãÂ¡ƒ8Û’È•ù1J$f7ea622e-0d02-4974-9f3c-9a77c3a8519b
+x
+java:S1444i"0Make this "public static lastResult" field final(Ùş¾şÿÿÿÿ8Û’È•ù1J$7ee6dd06-4fcd-41a5-86b7-7a0fd38ee65d
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ØŸéîşÿÿÿÿ8ã’È•ù1J$f1bfc6cb-ddee-4dc4-a35b-1d8eb2073764
+Ÿ
+java:S1450C"WRemove the "filePath" field and declare it as a local variable in the relevant methods.(­ ³Ïÿÿÿÿÿ8”È•ù1J$5e5b81c0-01be-4319-b548-c0dc8d09b9bb
+e
+java:S2386*"Make this member "protected".(ãõÄÿÿÿÿÿ8‚”È•ù1J$7a1fdb8b-1fc5-44bc-9e2f-65bd33270336
+`
+java:S2386/"Make this member "protected".(›úíò8ƒ”È•ù1J$4dd85920-1464-444f-9d14-5baae5112c60
+`
+java:S2386W"Make this member "protected".(·£ˆ8ƒ”È•ù1J$63fd3f34-2cdc-4731-b1a7-1e5304aa5f02
+	java:S100s"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ‘×‡8”È•ù1J$196b9249-9fb9-4a54-91ae-8b2f83b4b698
+‘	java:S100…"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äô¢…8”È•ù1J$e3dd4df9-d285-4441-971e-cdbb1319d802
+–	java:S100·"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÏûçûÿÿÿÿ8””È•ù1J$d89d14cc-ba03-4097-8bdd-d71e7c3e0dea
+›
+java:S3776·"RRefactor this method to reduce its Cognitive Complexity from 51 to the 15 allowed.(õÏûçûÿÿÿÿ8•”È•ù1J$458f7c52-c993-420b-b123-0e51e356e070
+o
+java:S1075"&Remove this hard-coded path-delimiter.(¸æ¿†ıÿÿÿÿ8¦”È•ù1J$600355cb-185c-4c75-99e3-14b1706911d6
+s
+java:S1172©"*Remove this unused method parameter "cmd".(ÉÈ¼™ùÿÿÿÿ8ŒÓÚ•ù1J$f0d2ce88-b581-48a0-990a-3f12fa82f57b
+s
+java:S1172¹"*Remove this unused method parameter "cmd".(û´®ƒşÿÿÿÿ8ÓÚ•ù1J$a68e7b30-1973-4f9b-9b42-5922d8c3f2bc
+s
+java:S1172Á"*Remove this unused method parameter "cmd".(‹ãÛáÿÿÿÿÿ8ÓÚ•ù1J$9d93d394-f599-4f90-8495-a7eed8a8f545
+n
+java:S1172Ö"*Remove this unused method parameter "cmd".(áÅ±ş8ÓÚ•ù1J$8dccf156-989b-493a-9c9e-dea2484097bd
