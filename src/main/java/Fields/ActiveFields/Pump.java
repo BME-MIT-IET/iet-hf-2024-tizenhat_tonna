@@ -3,6 +3,7 @@ package Fields.ActiveFields;
 import Controll.Controller;
 import Fields.Pipe;
 import Players.Player;
+import StringResource.StringResourceController;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -128,8 +129,6 @@ public class Pump extends ActiveFields {
 
         String playersNames = getPlayerNames();
 
-
-
         String pipesNames = getPipeNames();
 
 
@@ -157,30 +156,12 @@ public class Pump extends ActiveFields {
 
     private String getPlayerNames() {
         ArrayList<Player> players = this.getPlayers();
-        StringBuilder playerBuilder = new StringBuilder("null");
-        for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playerBuilder.delete(0,3);
-            playerBuilder.append(Controller.objectReverseNames.get(players.get(i)));
-            if (i != players.size() - 1) {
-                playerBuilder.append(", ");
-            }
-        }
-        return playerBuilder.toString();
+        return StringResourceController.stingBuilder(players);
     }
 
 
     private String getPipeNames(){
         ArrayList<Pipe> pipes = this.getPipes();
-        StringBuilder pipeBuilder = new StringBuilder("null");
-        if(pipes != null) {
-            for (int i = 0; i < pipes.size(); i++) {
-                if (i == 0) pipeBuilder.delete(0,3);
-                pipeBuilder.append(Controller.objectReverseNames.get(pipes.get(i)));
-                if (i != pipes.size() - 1) {
-                    pipeBuilder.append(", ");
-                }
-            }
-        }
-        return pipeBuilder.toString();
+        return StringResourceController.stingBuilder(pipes);
     }
 }

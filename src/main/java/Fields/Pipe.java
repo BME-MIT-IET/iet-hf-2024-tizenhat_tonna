@@ -5,6 +5,7 @@ import Enums.Fluid;
 import Fields.ActiveFields.ActiveFields;
 import Fields.ActiveFields.Pump;
 import Players.Player;
+import StringResource.StringResourceController;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -340,25 +341,10 @@ public class Pipe extends Field {
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
-        StringBuilder playerBuilder = new StringBuilder("null");
-        for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playerBuilder.delete(0,3);
-            playerBuilder.append(Controller.objectReverseNames.get(players.get(i)));
-            if (i != players.size() - 1) {
-                playerBuilder.append(", ");
-            }
-        }
+        String playerBuilder = StringResourceController.stingBuilder(players);
 
         ArrayList<ActiveFields> localFields = this.getFields();
-        StringBuilder fieldBuilder = new StringBuilder("null");
-        for (int i = 0; i < localFields.size(); i++) {
-            if(i == 0) fieldBuilder.delete(0,3);
-            fieldBuilder.append(Controller.objectReverseNames.get(localFields.get(i)));
-            if (i != localFields.size() - 1) {
-                fieldBuilder.append(", ");
-            }
-        }
-
+        String fieldBuilder = StringResourceController.stingBuilder(localFields);
         return "name: " + Controller.objectReverseNames.get(this)
                 + "\noccupied: " + this.isOccupied()
                 + "\nwater: " + getWaterNoChange()
