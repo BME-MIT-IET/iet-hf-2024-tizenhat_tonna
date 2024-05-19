@@ -520,7 +520,7 @@ public class Controller {
         switch (commands[1]){
             case "player":
                 if (test) outResults.add(p.toString());
-                else logger.log(Level.INFO, p.toString());
+                else logger.log(Level.INFO, p::toString);
                 break;
             case "field":
                 if (test) outResults.add(objectReverseNames.get(p.getStandingField()));

@@ -32,6 +32,7 @@ public class CisternDraw extends Drawable {
      * @param panel
      * @param g
      */
+    @Override
     public void Draw(JPanel panel, Graphics2D g) {
         cistern.setBounds(x, y, 50, 50);
         cistern.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
