@@ -3,6 +3,7 @@ package Controll;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import javax.swing.WindowConstants;
 
 import java.io.FileNotFoundException;
 
@@ -30,7 +31,7 @@ public class Menu extends JFrame implements ActionListener {
     public Menu(String name, String t) {
         currentTheme = t;
         setTitle(name);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setLayout(null);
         setBounds(700, 250, 500, 500);
@@ -52,11 +53,11 @@ public class Menu extends JFrame implements ActionListener {
         add(theme);
 
         Integer[] numOfMechanics = {2, 3, 4, 5, 6, 7, 8, 9};
-        mechanics = new JComboBox<Integer>(numOfMechanics);
+        mechanics = new JComboBox<>(numOfMechanics);
         mechanics.setBounds(300, 165, 40, 20);
 
         Integer[] numOfSaboteurs = {2, 3, 4, 5, 6, 7, 8, 9};
-        saboteurs = new JComboBox<Integer>(numOfSaboteurs);
+        saboteurs = new JComboBox<>(numOfSaboteurs);
         saboteurs.setBounds(300, 195, 40, 20);
 
         add(mechanics);
@@ -133,13 +134,10 @@ public class Menu extends JFrame implements ActionListener {
                     Controller.commandList.add("addplayer D Sab" + i);
                 }
             }
-            try {
-                Controller.Run(); // egyszer fut le, felépíti a pályát, utána a függvényeit kell majd hívni
-            } catch (FileNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            Controller.Run(); // egyszer fut le, felépíti a pályát, utána a függvényeit kell majd hívni
+
             Controller.create();
-            Controller.SetActivePlayer(Controller.getAllPlayers().get(0));
+            Controller.setActivePlayer(Controller.getAllPlayers().get(0));
             this.dispose();
             ViewGame vg = new ViewGame();
             vg.setBackgroundColor(currentTheme);

@@ -12,7 +12,7 @@ import java.util.Random;
  * Class for Pipes
  * */
 public class Pipe extends Field {
-
+    private final Random random = new Random();
     /**
      * Capacity of the pipe
      */
@@ -89,7 +89,7 @@ public class Pipe extends Field {
      * Getter for fields as Field.
      */
     @Override
-    public ArrayList<Field> getNeighborFields(){ return new ArrayList<Field>(fields);}
+    public ArrayList<Field> getNeighborFields(){ return new ArrayList<>(fields);}
     /**
      * Getter for capacity.
      */
@@ -133,7 +133,7 @@ public class Pipe extends Field {
             breakable = 5;
         }
         else {
-            breakable = 3+ new Random().nextInt(8);
+            breakable = 3+ random.nextInt(8);
         }
         return true;
     }
@@ -145,7 +145,7 @@ public class Pipe extends Field {
      */
     @Override
     public Pipe placePump(Pump newPump) {
-    	if(newPump == null) return null;
+    	if(newPump == null) { return null; }
         ActiveFields oldPump = (ActiveFields) fields.remove(0);
 
         disconnect(oldPump);
@@ -154,11 +154,10 @@ public class Pipe extends Field {
 
         oldPump.removePipe(this);
         Pipe newPipe;
-        Random r = new Random();
         if(Controller.isTest()) {
             newPipe = new Pipe(50);
         }
-        else newPipe = new Pipe(30+r.nextInt(41));
+        else newPipe = new Pipe(30+random.nextInt(41));
         newPipe.connect(newPump);
 
         newPipe.connect(oldPump);
@@ -240,13 +239,12 @@ public class Pipe extends Field {
         if(this.isOccupied())
             return null;
         if(fluid == Fluid.SLIPPERY){
-            Random r = new Random();
             int index;
             if (Controller.isTest()) {
                 index = 1;
             }
             else {
-                index = new Random().nextInt(2);
+                index = random.nextInt(2);
             }
             fields.get(index).accept(p);
             return fields.get(index);
@@ -265,7 +263,7 @@ public class Pipe extends Field {
      */
     public boolean removePlayer(Player p){
         if(fluid == Fluid.STICKY){
-            if(leave == true){
+            if(leave){
                 leave = false;
                 setOccupied(false);
                 getPlayers().remove(p);
@@ -288,7 +286,7 @@ public class Pipe extends Field {
                 remainingFluidTime = 5;
             }
             else {
-                remainingFluidTime = 3+new Random().nextInt(3);
+                remainingFluidTime = 3+random.nextInt(3);
             }
             fluid = Fluid.SLIPPERY;
             return true;
@@ -306,7 +304,7 @@ public class Pipe extends Field {
                 remainingFluidTime = 5;
             }
             else {
-                remainingFluidTime = 3+new Random().nextInt(3);
+                remainingFluidTime = 3+random.nextInt(3);
             }
             fluid = Fluid.STICKY;
             return true;
@@ -348,12 +346,12 @@ public class Pipe extends Field {
             }
         }
 
-        ArrayList<ActiveFields> fields = this.getFields();
+        ArrayList<ActiveFields> loaclFields = this.getFields();
         String fieldsNames ="null";
-        for (int i = 0; i < fields.size(); i++) {
+        for (int i = 0; i < loaclFields.size(); i++) {
             if(i == 0) fieldsNames = "";
-            fieldsNames += Controller.objectReverseNames.get(fields.get(i));
-            if (i != fields.size() - 1) {
+            fieldsNames += Controller.objectReverseNames.get(loaclFields.get(i));
+            if (i != loaclFields.size() - 1) {
                 fieldsNames += ", ";
             }
         }

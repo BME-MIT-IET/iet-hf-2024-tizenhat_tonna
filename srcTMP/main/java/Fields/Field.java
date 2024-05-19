@@ -52,9 +52,6 @@ public abstract class Field implements Steppable {
 	 * @return players.
 	 */
 	public ArrayList<Player> getPlayers() { //Basic getter if it is needed
-		/*if (players.size() == 0) {
-			return null;
-		}*/
 		return players;
 	}
 
@@ -177,6 +174,7 @@ public abstract class Field implements Steppable {
 	 * @return water in field.
 	 */
 	public int getWaterNoChange(){
+		//It has different implementaion later
 		return water;
 	}
 

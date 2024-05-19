@@ -25,7 +25,7 @@ public abstract class Player {
 	/**
 	 * Constructor for the player.
 	 */
-	public Player() {
+	protected Player() {
 	}
 
 	/**
@@ -136,8 +136,7 @@ public abstract class Player {
 	 * @return boolean - result of making the field sticky. True if successful.
 	 * */
 	public boolean makeSticky(){
-		boolean result = standingField.makeSticky();
-		return result;
+		return standingField.makeSticky();
 	}
 	/**
 	 * Method for making the field where the player is standing slippery.
