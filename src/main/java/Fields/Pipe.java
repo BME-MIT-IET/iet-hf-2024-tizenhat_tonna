@@ -8,6 +8,7 @@ import Players.Player;
 import StringResource.StringResourceController;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -39,7 +40,7 @@ public class Pipe extends Field {
     /**
      * The ends of the pipe. Default is empty.
      */
-    private ArrayList<ActiveFields> fields = new ArrayList<>();
+    private List<ActiveFields> fields = new ArrayList<>();
 
     /**
      * Constructor for Pipe
@@ -52,7 +53,7 @@ public class Pipe extends Field {
     /**
      * Setter for capacity. Only for initialization.
      */
-    public void setFields(ArrayList<ActiveFields> fields) {
+    public void setFields(List<ActiveFields> fields) {
         this.fields = fields;
     }
     /**
@@ -86,7 +87,7 @@ public class Pipe extends Field {
     /**
      * Getter for fields as ActiveFields.
      */
-    public ArrayList<ActiveFields> getFields() { return fields; }
+    public List<ActiveFields> getFields() { return fields; }
     /**
      * Getter for fields as Field.
      */
@@ -148,7 +149,7 @@ public class Pipe extends Field {
     @Override
     public Pipe placePump(Pump newPump) {
     	if(newPump == null) { return null; }
-        ActiveFields oldPump = (ActiveFields) fields.remove(0);
+        ActiveFields oldPump = fields.remove(0);
 
         disconnect(oldPump);
 
@@ -343,7 +344,7 @@ public class Pipe extends Field {
         ArrayList<Player> players = this.getPlayers();
         String playerBuilder = StringResourceController.stingBuilder(players);
 
-        ArrayList<ActiveFields> localFields = this.getFields();
+        List<ActiveFields> localFields = this.getFields();
         String fieldBuilder = StringResourceController.stingBuilder(localFields);
         return "name: " + Controller.objectReverseNames.get(this)
                 + "\noccupied: " + this.isOccupied()

@@ -32,7 +32,7 @@ public class Cistern extends ActiveFields{
      */
     @Override
     public void step() {
-        if (getPipes() != null) {
+        if (!getPipes().isEmpty()) {
             for (Pipe pipe : getPipes()) {
                 super.setWater(super.getWater() + pipe.getWater());
             }
@@ -59,16 +59,6 @@ public class Cistern extends ActiveFields{
             else return new Pump(80+random.nextInt(41));
         }
         else return null;
-    }
-
-    /**
-     * Method for getting the water from the field.
-     * Prints the amount of water taken.
-     * @return The amount of water in the field.
-     */
-    @Override
-    public int getWater() {
-        return super.getWater();
     }
 
     /**

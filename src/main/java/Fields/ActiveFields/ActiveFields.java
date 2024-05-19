@@ -22,7 +22,7 @@ public abstract class ActiveFields extends Field {
      * @return The pipes connected to the active field
      */
     public ArrayList<Pipe> getPipes() {
-        if (pipes.isEmpty()) return null;
+        if (pipes.isEmpty()) return new ArrayList<>();
         return pipes;
     }
 

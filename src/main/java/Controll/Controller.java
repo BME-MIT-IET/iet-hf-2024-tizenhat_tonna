@@ -178,9 +178,8 @@ public class Controller {
 
     /**
      * Game mode after "create" you cannot create new objects in this mode.
-     * @throws FileNotFoundException
      */
-    public static void Game() throws FileNotFoundException {
+    public static void Game(){
         while(gameMode) {
             currentPlayer = activePlayers.get(0); // az első játékos a sor végére rakom, jelenleg ő az aktív
             activePlayers.remove(0);
@@ -543,7 +542,7 @@ public class Controller {
     public static void move(String[] cmd){
         Player p = (Player)objectNames.get(cmd[1]);
         Field f = (Field)objectNames.get(cmd[2]);
-        ArrayList<Field> neighbors = p.getStandingField().getNeighborFields();
+       List<Field> neighbors = p.getStandingField().getNeighborFields();
         if(neighbors.contains(f)) {
             neighborsContains(p,f);
         }
