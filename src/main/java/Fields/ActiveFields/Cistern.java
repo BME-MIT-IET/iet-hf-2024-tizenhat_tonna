@@ -3,6 +3,7 @@ package Fields.ActiveFields;
 import Controll.Controller;
 import Fields.Pipe;
 import Players.Player;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,7 +11,7 @@ import java.util.Random;
  * Class for Cistern
  * */
 public class Cistern extends ActiveFields{
-
+    private Random random = new Random();
     /**
      * Last created Pipe. Null if the last pump was just taken.
      */
@@ -36,11 +37,10 @@ public class Cistern extends ActiveFields{
             }
         }
         if(createdPipe == null){
-            Random r = new Random();
             if(Controller.isTest()){
                 createdPipe = new Pipe(65);
             }
-            else createdPipe = new Pipe(30+r.nextInt(41));
+            else createdPipe = new Pipe(30+random.nextInt(41));
         }
     }
 
@@ -51,12 +51,11 @@ public class Cistern extends ActiveFields{
      * */
     @Override
     public Pump createNewPump(boolean b) {
-        Random r = new Random();
         if(b){
             if(Controller.isTest()){
                 return new Pump(100);
             }
-            else return new Pump(80+r.nextInt(41));
+            else return new Pump(80+random.nextInt(41));
         }
         else return null;
     }
