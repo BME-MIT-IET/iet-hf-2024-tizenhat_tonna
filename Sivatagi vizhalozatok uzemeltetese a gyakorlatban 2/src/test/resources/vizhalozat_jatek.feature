@@ -1,15 +1,15 @@
 Feature: Sivatagi Vízhálózat Játék
 
-  Scenario: Játékos mozgatása egy pumpáról üres csőre
+  Scenario: Jatekos mozgatása egy pumpáról üres csőre
     Given A jatek inicializalasra kerult
-    When "Mec1" mozog "AC2" re
-    #Then A művelet sikeresen végrehajtódik
+    Given test
+    When "Mec1" mozog "AC2" re a 1 -s scenarioban
+    Then A művelet sikeresen végrehajtódik a(z) 1 -s scenarioban
 
-  Scenario: Játékos mozgatása egy pumpáról már foglalt csőre
-    Given A szerelő csapat egyik játékosa egy pumpán áll
-    And Egy másik játékos tartózkodik a célszomszédos csőn
-    When Mozog egy szomszédos foglalt csőre
-    Then A művelet sikertelen marad
+  #Scenario: Jatekos mozgatasa egy pumparol mar foglalt csore
+   # Given A jatek inicializalasra kerult
+    #When "Mec1" mozog "AB" re a(z) 2 -s scenarioban
+    #Then A művelet végrehatása sikertelen a(z) 2 -s scenarioban
 
   Scenario: Játékos mozgatása egy csőről szomszédos pumpára melyen már tartózkodik játékos
     Given A szerelő csapat egyik játékosa egy csőn áll

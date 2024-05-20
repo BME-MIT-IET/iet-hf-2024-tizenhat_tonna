@@ -2,16 +2,18 @@ import Controll.Controller;
 import Fields.Field;
 import Players.Player;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StepDefs {
-    @Given("^A szerelő csapat egyik játékosa egy pumpán áll$")
-    public void mechanicIsStandingOnAPump() {
-    }
+    private final Map<Integer, Boolean> actionResults = new HashMap<>();
 
     @Given("A jatek inicializalasra kerult")
     public void gameInitialized() {
@@ -26,10 +28,20 @@ public class StepDefs {
         Controller.SetActivePlayer(Controller.getAllPlayers().get(0));
     }
 
-    @When("{string} mozog {string} re")
-    public void movePlayer(String playerName, String toWhere) {
+    @When("{string} mozog {string} re a {int} -s scenarioban")
+    public void movePlayer(String playerName, String toWhere, Integer scenarioNumber) {
         Player player = (Player) Controller.objectNames.get(playerName);
         Field field = (Field) Controller.objectNames.get(toWhere);
-        assertEquals(true, player.move(field));
+        actionResults.put(scenarioNumber, player.move(field));
+    }
+
+    @Then("A művelet sikeresen végrehajtódik a\\(z) {int} -s scenarioban")
+    public void actionSuccessful(int scenarioNumber) {
+        assertTrue(actionResults.get(scenarioNumber));
+    }
+
+    @Then("A művelet végrehatása sikertelen a\\(z) {int} -s scenarioban")
+    public void actionUnsuccessful(int scenarioNumber) {
+        assertFalse(actionResults.get(scenarioNumber));
     }
 }
