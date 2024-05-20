@@ -28,7 +28,7 @@ WORKDIR /app
 
 # Copy the JAR file from the builder stage
 COPY --from=builder /app/target/*.jar /app/app.jar
-COPY --from=builder /src/palya.txt /app/src/palya.txt
+COPY --from=builder /app/src/palya.txt /app/src/palya.txt
 
 # Expose the VNC port
 EXPOSE 5800 5900
