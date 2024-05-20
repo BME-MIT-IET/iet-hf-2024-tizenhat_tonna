@@ -61,6 +61,13 @@ public class WaterCounter {
      * @return mechanic - Points of the mechanics.
      */
     public int getMechanic() { return mechanic; }
+
+    public ArrayList<Cistern> getCisterns() { return cisterns; }
+    
+    public ArrayList<Pipe> getPipes() { return pipes; }
+
+    public boolean getEnd() { return end; }
+
     /**
      *Adds new Cistern to cisterns.
      * @param c Cistern that is to be added to cisterns.
