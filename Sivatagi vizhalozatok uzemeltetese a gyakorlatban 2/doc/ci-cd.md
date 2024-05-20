@@ -1,4 +1,4 @@
-# Vízhálózat Játék CI-CD
+# Vízhálózat játék CI-CD
 
 Ez a dokumentum leírja a projekthez készített és felhasznált CI-CD rendszereket. A megvalósítás fő vektora a GitHub Actions volt.
 

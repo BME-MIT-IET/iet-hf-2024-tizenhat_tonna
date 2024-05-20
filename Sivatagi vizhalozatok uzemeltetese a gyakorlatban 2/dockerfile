@@ -1,17 +1,13 @@
-# First stage: Build the Maven project
+# Build with maven
 FROM maven:3.8.6-openjdk-11 AS builder
 
-# Set the working directory in the container
 WORKDIR /app
-
-# Copy the pom.xml and the source code
 COPY pom.xml .
 COPY src ./src
 
-# Package the application
 RUN mvn clean package
 
-# Second stage: Create the runtime image
+# Create the runtime image
 FROM openjdk:11
 
 RUN apt-get update && apt-get install -y \
@@ -20,18 +16,13 @@ RUN apt-get update && apt-get install -y \
     libxtst6 \
     libxi6
 
-# Set environment variables for X11
+# X11 env variable
 ENV DISPLAY=host.docker.internal:0.0
 
-# Set the working directory in the container
 WORKDIR /app
-
-# Copy the JAR file from the builder stage
 COPY --from=builder /app/target/*.jar /app/app.jar
 COPY --from=builder /app/src/palya.txt /app/src/palya.txt
 
-# Expose the VNC port
+# Expose VNC port
 EXPOSE 5800 5900
-
-# Run the necessary services and the Java application
 CMD ["java", "-jar", "/app/app.jar"]
