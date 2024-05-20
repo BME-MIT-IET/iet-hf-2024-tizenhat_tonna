@@ -14,7 +14,7 @@ A játék azon osztályait teszteltem, melyek nem a grafikus megjelenítéshez t
 - Mechanic.java -> MechanicTest.java
 - Saboteur.java -> SaboteurTest.java
 
-Minden tesztelt osztály minden függvényéhez készítettem lgalább egy tesztet, figyelve arra, hogy az összes fontos esetet lefedjem ezekkel.
+Minden tesztelt osztály minden függvényéhez készítettem legalább egy tesztet, figyelve arra, hogy az összes fontos esetet lefedjem ezekkel.
 
 ## Unit tesztek
 
