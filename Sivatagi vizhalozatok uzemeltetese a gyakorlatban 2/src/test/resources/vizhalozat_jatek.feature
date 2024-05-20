@@ -1,38 +1,32 @@
 Feature: Sivatagi Vízhálózat Játék
 
-  Scenario: Jatekos mozgatása egy pumpáról üres csőre
+  Scenario: Jatekos mozgatasa egy pumparol ures csore
     Given A jatek inicializalasra kerult
-    Given test
     When "Mec1" mozog "AC2" re a 1 -s scenarioban
     Then A művelet sikeresen végrehajtódik a(z) 1 -s scenarioban
 
-  #Scenario: Jatekos mozgatasa egy pumparol mar foglalt csore
-   # Given A jatek inicializalasra kerult
-    #When "Mec1" mozog "AB" re a(z) 2 -s scenarioban
-    #Then A művelet végrehatása sikertelen a(z) 2 -s scenarioban
+  Scenario: Jatekos mozgatasa egy pumparol mar foglalt csore
+    Given A jatek inicializalasra kerult
+    When "Mec1" mozog "AB" re a 2 -s scenarioban
+    Then A művelet végrehatása sikertelen a(z) 2 -s scenarioban
 
-  Scenario: Játékos mozgatása egy csőről szomszédos pumpára melyen már tartózkodik játékos
-    Given A szerelő csapat egyik játékosa egy csőn áll
-    And Egy másik játékos tartózkodik a cél pumpán
-    When Mozog a cél pumpára
-    Then A művelet sikeresen végrehajtódik
+  Scenario: Jatekos mozgatasa egy csorol szomszedos pumpara melyen mar tartozkodik jatekos
+    Given A jatek inicializalasra kerult
+    When "Sab1" mozog "A" re a 3 -s scenarioban
+    Then A művelet sikeresen végrehajtódik a(z) 3 -s scenarioban
 
-  Scenario: Szerelők megjavítják a meghibásodott pumpát
-    Given A játékban egy meghibásodott pumpa van a csőhálózatban
-    When A szerelők megjavítják a pumpát
-    Then A meghibásodott pumpa ismét működőképes lesz
+  Scenario: Szerelok megjavitjak a meghibasodott pumpat
+    Given A jatek inicializalasra kerult
+    When "Mec1" megjavitja a pumpat melyen jelenleg tartozkodik a 4 -s scenarioban
+    Then A művelet sikeresen végrehajtódik a(z) 4 -s scenarioban
 
-  Scenario: Szerelők bővítik a csőhálózatot egy új csővel
-    Given A városi ciszternák mellett találhatók szabad csövek
-    When A szerelők illesztenek egy új csövet a csőhálózatba a ciszternához
-    Then Az új cső segíti a hatékonyabb vízszállítást a városi ciszternákba
+  Scenario: Szabotorok kilyukasztanak egy fontos csovet
+    Given A jatek inicializalasra kerult
+    When A "Sab1" tonkreteszi az elemet amin jelenleg tartozkodik a 5 -s scenarioban
+    Then A művelet sikeresen végrehajtódik a(z) 5 -s scenarioban
 
-  Scenario: Szabotőrök kilyukasztanak egy fontos csövet
-    Given A csőhálózatban található egy fontos cső
-    When A szabotőrök kilyukasztják ezt a csövet
-    Then Vízveszteség keletkezik, csökkentve a vízszállítás hatékonyságát
-
-  Scenario: Szabotőrök beavatkoznak a működő pumpákba
-    Given A csőhálózatban működő pumpák vannak
-    When A szabotőrök módosítják a pumpák beállításait
-    Then Csökkenti a vízszállítás hatékonyságát a csőhálózatban
+  Scenario: Szabotorok beavatkoznak a mukodo pumpakba
+    Given A jatek inicializalasra kerult
+    When "Sab1" mozog "B" re a 6 -s scenarioban
+    And "Sab1" a jelenlegi poziciojan a bemeneti csovet "BS2" re es kimeneti csovet "CB" re csereli a 6 -s scenarioban
+    Then A művelet sikeresen végrehajtódik a(z) 6 -s scenarioban

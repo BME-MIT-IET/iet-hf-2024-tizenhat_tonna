@@ -1,6 +1,8 @@
 import Controll.Controller;
 import Fields.Field;
+import Fields.Pipe;
 import Players.Player;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -43,5 +45,25 @@ public class StepDefs {
     @Then("A művelet végrehatása sikertelen a\\(z) {int} -s scenarioban")
     public void actionUnsuccessful(int scenarioNumber) {
         assertFalse(actionResults.get(scenarioNumber));
+    }
+
+    @When("{string} megjavitja a pumpat melyen jelenleg tartozkodik a {int} -s scenarioban")
+    public void megjavitjaAPumpatMelyenJelenlegTartozkodikASScenarioban(String playerName, int scenarioNumber) {
+        Player player = (Player) Controller.objectNames.get(playerName);
+        actionResults.put(scenarioNumber, player.repair());
+    }
+
+    @When("A {string} tonkreteszi az elemet amin jelenleg tartozkodik a {int} -s scenarioban")
+    public void saboteurBreaksField(String playerName, int scenarioNumber) {
+        Player player = (Player) Controller.objectNames.get(playerName);
+        actionResults.put(scenarioNumber, player.breakField());
+    }
+
+    @And("{string} a jelenlegi poziciojan a bemeneti csovet {string} re es kimeneti csovet {string} re csereli a {int} -s scenarioban")
+    public void setCurrentPipeInOut(String playerName, String inPipe, String outPipe, int scenarioNumber) {
+        Player player = (Player) Controller.objectNames.get(playerName);
+        Pipe in = (Pipe) Controller.objectNames.get(inPipe);
+        Pipe out = (Pipe) Controller.objectNames.get(outPipe);
+        actionResults.put(scenarioNumber, player.set(in, out));
     }
 }
