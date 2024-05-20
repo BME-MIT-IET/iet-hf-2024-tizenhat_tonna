@@ -1,5 +1,5 @@
 # Nem funkcionális elemek tesztelése
-A tesztelés során a vízvezeték-játék nem-funkcionális jellemzőit vizsgáltam. Ez a teljesítmény, stresszbírás, biztonság és használhatóság vizsgálatát foglalja magában.
+A tesztelés során a vízvezeték-játék nem-funkcionális jellemzőit vizsgáltam. Ez a teljesítmény, stresszbírás, biztonság és használhatóság vizsgálatát foglalja magában. A tesztelés megvalósítása során a legnagyobb nehézséget talán annak a kitalálása okozta, hogy hogyan implementáljam a tesztelő osztályt úgy, hogy a lehető legminimálisabban zavarja meg a létező kódot. A végső megoldás az lett, hogy pár változót statikussá kellett tenni, hogy a külön tesztosztályból elérhetők legyenek.
 
 ## Teljesítmény
 ### Indítási idő mérése
