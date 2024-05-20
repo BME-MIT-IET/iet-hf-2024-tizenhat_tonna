@@ -1,5 +1,3 @@
-package Testing;
-
 import Controll.Menu;
 import Controll.ViewGame;
 import org.apache.jmeter.config.Arguments;
