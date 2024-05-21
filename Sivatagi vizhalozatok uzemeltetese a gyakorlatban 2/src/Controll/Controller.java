@@ -64,6 +64,9 @@ public class Controller {
      * Getter for test
      * */
     public static boolean isTest() {return test;}
+
+    public static void setTest(boolean value){ test = value;}
+    
     /**
      * Name of the used file
      * */
