@@ -1,0 +1,6 @@
+cistern cistern
+saboteur sab cistern
+addplayer cistern sab
+create
+breakfield sab
+showobject cistern

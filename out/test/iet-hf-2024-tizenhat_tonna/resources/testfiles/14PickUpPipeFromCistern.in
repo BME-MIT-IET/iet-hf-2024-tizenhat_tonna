@@ -1,0 +1,8 @@
+cistern c
+step c
+mechanic m c
+addplayer c m
+create
+pickuppipe m
+showobject c
+showobject m

@@ -1,0 +1,10 @@
+pump Pfrom 100
+pipe Pto 100 fluid:sticky leave:false
+connectpipe Pto Pfrom
+saboteur sab Pfrom
+addplayer Pfrom sab
+create
+move sab Pto
+showobject Pto
+showobject Pfrom
+showobject sab

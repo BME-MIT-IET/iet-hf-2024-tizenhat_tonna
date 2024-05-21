@@ -1,0 +1,18 @@
+random false
+pipe Pin 65 water:65
+pipe Pout 65
+pump pump 100 water:50
+connectpipe Pin pump
+connectpipe Pout pump
+mechanic mech pump
+addplayer pump mech
+set mech Pin Pout
+pump tmp 10
+connectpipe Pout tmp
+connectpipe Pin tmp
+create
+step pump
+showobject Pin
+showobject Pout
+showobject pump
+random true

@@ -1,0 +1,36 @@
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék!
+Sikeres művelet
+name: mech
+standingField: pump
+holdingPipe: removePipe
+holdingPump: null
+
+name: pump
+occupied: false
+water: 0
+broken: false
+players: mech
+pipes: stayPipe
+tank: 500
+waterFrom: null
+waterTo: null
+
+name: removePipe
+occupied: false
+water: 0
+broken: false
+players: null
+fields: null
+capacity: 100
+breakable: 0
+rfluidtime: 0
+leave: true
+fluid: dry
+

@@ -1,0 +1,7 @@
+spring s 200
+pipe p 100
+connectpipe p s
+create
+step s
+showobject s
+showobject p

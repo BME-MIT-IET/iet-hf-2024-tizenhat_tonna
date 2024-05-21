@@ -1,0 +1,12 @@
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék! 
+Sikertelen művelet
+name: cistern
+occupied: false
+water: 0
+broken: false
+players: sab
+pipes: null
+

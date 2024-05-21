@@ -1,0 +1,6 @@
+pipe goodPipe 34 
+mechanic mech goodPipe
+addplayer goodPipe mech
+create
+breakfield mech
+showobject goodPipe

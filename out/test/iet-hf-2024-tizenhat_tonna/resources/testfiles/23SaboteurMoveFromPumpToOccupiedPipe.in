@@ -1,0 +1,12 @@
+pump Pfrom 100
+pipe Pto 100
+connectpipe Pto Pfrom
+saboteur sab Pfrom
+addplayer Pfrom sab
+mechanic mech Pto
+addplayer Pto mech
+create
+move sab Pto
+showobject Pto
+showobject Pfrom
+showobject sab

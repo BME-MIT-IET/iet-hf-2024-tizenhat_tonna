@@ -1,0 +1,6 @@
+pipe p 100 fluid:sticky rfluidtime:3 leave:false
+saboteur sab p
+addplayer p sab
+create
+makeslippery sab
+showobject p

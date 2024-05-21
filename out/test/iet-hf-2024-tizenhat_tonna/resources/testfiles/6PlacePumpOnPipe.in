@@ -1,0 +1,10 @@
+pipe oldPipe 100
+pump oldPump 100
+pump holdingPump 400
+connectpipe oldPipe oldPump
+mechanic mech oldPipe pump:holdingPump
+addplayer oldPipe mech
+create
+placepump mech
+showobject holdingPump
+showobject mech

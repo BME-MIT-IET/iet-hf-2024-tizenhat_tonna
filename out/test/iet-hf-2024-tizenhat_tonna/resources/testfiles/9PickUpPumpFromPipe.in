@@ -1,0 +1,6 @@
+pipe p 100 
+mechanic m p
+addplayer p m
+create
+getpump m
+showobject m

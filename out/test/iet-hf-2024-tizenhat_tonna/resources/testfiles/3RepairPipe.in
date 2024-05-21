@@ -1,0 +1,6 @@
+pipe brokenPipe 34 broken:true
+mechanic mech brokenPipe
+addplayer brokenPipe mech
+create
+repair mech
+showobject brokenPipe

@@ -1,0 +1,17 @@
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék! 
+Sikertelen művelet
+name: goodPipe
+occupied: true
+water: 0
+broken: false
+players: mech
+fields: null
+capacity: 34
+breakable: 2
+rfluidtime: 0
+leave: true
+fluid: dry
+

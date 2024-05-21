@@ -1,0 +1,9 @@
+pump Pfrom 100
+pipe Pto 100
+connectpipe Pto Pfrom
+mechanic mech Pfrom
+create
+move mech Pto
+showobject Pto
+showobject Pfrom
+showobject mech
