@@ -12,7 +12,6 @@ public class Saboteur extends Player {
 	 * Constructor for the saboteur.
 	 */
 	public Saboteur() {
-		//Nothing can be inicialized here
 	}
 
 	/**
@@ -20,8 +19,8 @@ public class Saboteur extends Player {
 	 * @return boolean - returns true if action was successful.
 	 */
 	public boolean makeSlippery(){
-		return this.getStandingField().makeSlippery();
-
+		boolean result = this.getStandingField().makeSlippery();
+		return result;
 	}
 	/**
 	 * Method for getting a string containing all the important information about the saboteur.

@@ -100,7 +100,7 @@ public class Mechanic extends Player {
     public boolean connect() {
         if(holdingPipe == null) return false;
         boolean result = super.getStandingField().addPipe(holdingPipe);
-		if(!result){ return false; }
+		if(!result) return false;
         boolean b = holdingPipe.connect((ActiveFields)super.getStandingField());
         if(b) holdingPipe = null;
         return b;
