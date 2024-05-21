@@ -11,24 +11,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
-import java.util.Map;
-import javax.swing.WindowConstants;
 
 public class ViewGame extends JFrame implements ActionListener {
 
+    private Controller controller;
     private static boolean isChosen = false;
     private JPanel gameBackground;
 
     /**
      * HashMap for the Drawables
      */
-    public static final Map<Drawable, Object> objectDrawNames = new HashMap<>();
+    public static HashMap<Drawable, Object> objectDrawNames = new HashMap<>();
     /**
      * HashMap for the Drawables
      */
-    public static final Map<Object, Drawable> objectDrawReverseNames = new HashMap<>();
+    public static HashMap<Object, Drawable> objectDrawReverseNames = new HashMap<>();
 
 
     public static ViewGame vg;
@@ -44,14 +42,14 @@ public class ViewGame extends JFrame implements ActionListener {
     /**
      * Controll buttons
      */
-    static JButton moveButton;
-    static JButton repairButton;
-    static JButton breakButton;
-    static JButton makeSlipperyButton;
-    static JButton makeStickyButton;
-    static JButton pickUpButton;
-    static JButton putDownButton;
-    static JButton setPumpButton;
+    JButton moveButton;
+    JButton repairButton;
+    JButton breakButton;
+    JButton makeSlipperyButton;
+    JButton makeStickyButton;
+    JButton pickUpButton;
+    JButton putDownButton;
+    JButton setPumpButton;
 
     /**
      * Last action
@@ -60,11 +58,11 @@ public class ViewGame extends JFrame implements ActionListener {
     /**
      * ArrayList for the selected elements
      */
-    static final List<Object> selectSequence = new ArrayList<>(); //kiválasztott elemek, kiválasztásuk sorrendjében
+    static ArrayList<Object> selectSequence = new ArrayList<Object>(); //kiválasztott elemek, kiválasztásuk sorrendjében
     /**
      * HashMap for the buttons
      */
-    public static final Map<JButton, Drawable> buttonToElement = new HashMap<>(); //kiválasztó gomb -> kiválasztott rajz
+    public static HashMap<JButton, Drawable> buttonToElement = new HashMap<JButton, Drawable>(); //kiválasztó gomb -> kiválasztott rajz
 
     /**
      * Max number of rounds
@@ -121,27 +119,13 @@ public class ViewGame extends JFrame implements ActionListener {
 		}
     };
 
-    public static Menu menu;
-
     /**
      * Main method
      * @param args
      */
     public static void main(String[] args){
-        // measure startup time
-        long startTime = System.currentTimeMillis();
-
-        menu = new Menu("Menu", "White");
+        Menu menu = new Menu("Menu", "White");
         menu.showMenu();
-
-        // measure startup time
-        long endTime = System.currentTimeMillis();
-        long duration = endTime - startTime;
-        System.out.println("Startup time: " + duration + "ms");
-    }
-
-    public static Menu getMenuInstance() {
-        return menu;
     }
 
     /**
@@ -169,16 +153,16 @@ public class ViewGame extends JFrame implements ActionListener {
      */
     public ViewGame() {
         setTitle("Sivatagi vízhálózatok üzemeltetése a gyakorlatban 2");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(true);
         setBounds(400, 150, 1000, 700);
         setLayout(new BorderLayout());
         gameBackground = new JPanel() {
-            @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D)g;
                 g2d.setColor(Color.black);
                 super.paintComponent(g2d);
+                int i = 0;
                 for (Drawable draw : objectDrawReverseNames.values()){
                     if (draw instanceof PipeDraw) {
                         Pipe p = (Pipe)ViewGame.objectDrawNames.get(draw);
@@ -250,10 +234,17 @@ public class ViewGame extends JFrame implements ActionListener {
     }
 
     /**
+     * Sets the controller
+     * @param c
+     */
+    public void setController(Controller c){
+        controller = c;
+    }
+
+    /**
      * Paints the objects
      * @param g
      */
-    @Override
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
