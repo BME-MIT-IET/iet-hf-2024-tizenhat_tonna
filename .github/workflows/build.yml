@@ -5,6 +5,7 @@ on:
       - main
       - Manuális-és-statikus-ellenőrzés
       - Sonar-Fixes
+      - Sonar-Cloud
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
