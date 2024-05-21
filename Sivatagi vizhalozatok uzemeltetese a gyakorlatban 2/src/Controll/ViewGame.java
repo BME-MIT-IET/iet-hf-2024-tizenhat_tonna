@@ -1,20 +1,18 @@
 package Controll;
 
-import Drawing.*;
+import Drawing.Drawable;
+import Drawing.PipeDraw;
 import Enums.Fluid;
-import Fields.*;
-
-import Fields.ActiveFields.*;
+import Fields.Pipe;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import javax.swing.WindowConstants;
 
 public class ViewGame extends JFrame implements ActionListener {
 

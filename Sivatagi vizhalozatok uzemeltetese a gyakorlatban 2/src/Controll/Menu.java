@@ -1,16 +1,9 @@
 package Controll;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
-import javax.swing.WindowConstants;
-
-import java.io.FileNotFoundException;
-
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 
 
 public class Menu extends JFrame implements ActionListener {

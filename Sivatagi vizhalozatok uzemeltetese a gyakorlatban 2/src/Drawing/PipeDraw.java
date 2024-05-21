@@ -41,8 +41,11 @@ public class PipeDraw extends Drawable {
         pipeB.addActionListener(ViewGame.selectListener);
     }
     public void setCoords(Drawable pumpFrom, Drawable pumpTo) {
-    	int fromX, toX, fromY, toY;
-    	
+    	int fromX;
+        int toX;
+        int fromY;
+        int toY;
+
     	fromX = pumpFrom.getX();
         fromY = pumpFrom.getY();
         toX = pumpTo.getX();

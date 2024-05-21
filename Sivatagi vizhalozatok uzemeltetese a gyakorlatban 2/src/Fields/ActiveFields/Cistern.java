@@ -3,6 +3,8 @@ package Fields.ActiveFields;
 import Controll.Controller;
 import Fields.Pipe;
 import Players.Player;
+import StringResource.StringResourceController;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -30,7 +32,7 @@ public class Cistern extends ActiveFields{
      */
     @Override
     public void step() {
-        if (getPipes() != null) {
+        if (!getPipes().isEmpty()) {
             for (Pipe pipe : getPipes()) {
                 super.setWater(super.getWater() + pipe.getWater());
             }
@@ -60,16 +62,6 @@ public class Cistern extends ActiveFields{
     }
 
     /**
-     * Method for getting the water from the field.
-     * Prints the amount of water taken.
-     * @return The amount of water in the field.
-     */
-    @Override
-    public int getWater() {
-        return super.getWater();
-    }
-
-    /**
      * Method for picking up a (new) pipe from the field.
      * @return The new pipe.
      */
@@ -92,35 +84,16 @@ public class Cistern extends ActiveFields{
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
-        String playersNames = "null";
-
-        for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
-            if (i != players.size() - 1) {
-                playersNames += ", ";
-            }
-        }
-
-
+        String playerBuilder = StringResourceController.stingBuilder(players);
 
         ArrayList<Pipe> pipes = this.getPipes();
-        String pipesNames ="null";
-        if(pipes != null) {
-            for (int i = 0; i < pipes.size(); i++) {
-                if (i == 0) pipesNames = "";
-                pipesNames += Controller.objectReverseNames.get(pipes.get(i));
-                if (i != pipes.size() - 1) {
-                    pipesNames += ", ";
-                }
-            }
-        }
+        String pipeBuilder = StringResourceController.stingBuilder(pipes);
 
           return "name: "+ Controller.objectReverseNames.get(this)
                   + "\noccupied: " + this.isOccupied()
                   + "\nwater: " + getWaterNoChange()
                   + "\nbroken: " + this.isBroken()
-                  + "\nplayers: " + playersNames
-                  + "\npipes: " + pipesNames + "\n";
+                  + "\nplayers: " + playerBuilder
+                  + "\npipes: " + pipeBuilder + "\n";
     }
 }

@@ -3,6 +3,7 @@ package Fields.ActiveFields;
 import Controll.Controller;
 import Fields.Pipe;
 import Players.Player;
+import StringResource.StringResourceController;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -128,19 +129,17 @@ public class Pump extends ActiveFields {
 
         String playersNames = getPlayerNames();
 
-
-
         String pipesNames = getPipeNames();
 
 
-        String SWaterFrom="";
-        String SWaterTo="";
+        String sWaterFrom="";
+        String sWaterTo="";
         if(getWaterFrom() == -1 && getWaterTo() == -1 ){
-            SWaterFrom = SWaterTo = "null";
+            sWaterFrom = sWaterTo = "null";
         }
         else{
-            SWaterFrom = ""+Controller.objectReverseNames.get(getPipes().get(getWaterFrom()));
-            SWaterTo = ""+Controller.objectReverseNames.get(getPipes().get(getWaterTo()));
+            sWaterFrom = ""+Controller.objectReverseNames.get(getPipes().get(getWaterFrom()));
+            sWaterTo = ""+Controller.objectReverseNames.get(getPipes().get(getWaterTo()));
         }
 
 
@@ -151,36 +150,18 @@ public class Pump extends ActiveFields {
                 + "\nplayers: " + playersNames
                 + "\npipes: " + pipesNames
                 + "\ntank: " + this.getTank()
-                + "\nwaterFrom: " +SWaterFrom
-                + "\nwaterTo: " +SWaterTo  + "\n";
+                + "\nwaterFrom: " +sWaterFrom
+                + "\nwaterTo: " +sWaterTo  + "\n";
     }
 
     private String getPlayerNames() {
         ArrayList<Player> players = this.getPlayers();
-        String playersNames = "null";
-        for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
-            if (i != players.size() - 1) {
-                playersNames += ", ";
-            }
-        }
-        return playersNames;
+        return StringResourceController.stingBuilder(players);
     }
 
 
     private String getPipeNames(){
         ArrayList<Pipe> pipes = this.getPipes();
-        String pipesNames ="null";
-        if(pipes != null) {
-            for (int i = 0; i < pipes.size(); i++) {
-                if (i == 0) pipesNames = "";
-                pipesNames += Controller.objectReverseNames.get(pipes.get(i));
-                if (i != pipes.size() - 1) {
-                    pipesNames += ", ";
-                }
-            }
-        }
-        return pipesNames;
+        return StringResourceController.stingBuilder(pipes);
     }
 }
