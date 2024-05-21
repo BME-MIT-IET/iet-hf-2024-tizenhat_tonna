@@ -10,3 +10,6 @@
 *.out
 *.OUT
 /bin/
+.idea/
+out/production/iet-hf-2024-tizenhat_tonna/palya.txt
+/target

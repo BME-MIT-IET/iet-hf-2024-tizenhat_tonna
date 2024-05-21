@@ -240,9 +240,11 @@ public class Controller {
     public static void load(String cmd){
         try(Scanner scanner = new Scanner(new File(cmd))) {
             outResults.clear();
-            logger.log(Level.INFO, cmd);
-
-            filePath = cmd;
+            System.out.println(cmd);
+            String rootDirectory = System.getProperty("user.dir");
+            String modifiedPath=cmd.replace("/", File.separator).replace("\\", File.separator);
+            Scanner scanner = new Scanner(new File(rootDirectory+File.separator+"Sivatagi vizhalozatok uzemeltetese a gyakorlatban 2"+ File.separator+modifiedPath));
+            filePath = modifiedPath;
             String separator = "\\";
             String[] tmp=cmd.replaceAll(Pattern.quote(separator), "\\\\").split("\\\\");
             fileName = tmp[tmp.length-1];
