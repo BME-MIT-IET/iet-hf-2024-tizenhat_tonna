@@ -3,6 +3,8 @@ package Fields.ActiveFields;
 import Controll.Controller;
 import Fields.Pipe;
 import Players.Player;
+import StringResource.StringResourceController;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,7 +12,7 @@ import java.util.Random;
  * Class for Cistern
  * */
 public class Cistern extends ActiveFields{
-
+    private Random random = new Random();
     /**
      * Last created Pipe. Null if the last pump was just taken.
      */
@@ -30,17 +32,16 @@ public class Cistern extends ActiveFields{
      */
     @Override
     public void step() {
-        if (getPipes() != null) {
+        if (!getPipes().isEmpty()) {
             for (Pipe pipe : getPipes()) {
                 super.setWater(super.getWater() + pipe.getWater());
             }
         }
         if(createdPipe == null){
-            Random r = new Random();
             if(Controller.isTest()){
                 createdPipe = new Pipe(65);
             }
-            else createdPipe = new Pipe(30+r.nextInt(41));
+            else createdPipe = new Pipe(30+random.nextInt(41));
         }
     }
 
@@ -51,24 +52,13 @@ public class Cistern extends ActiveFields{
      * */
     @Override
     public Pump createNewPump(boolean b) {
-        Random r = new Random();
         if(b){
             if(Controller.isTest()){
                 return new Pump(100);
             }
-            else return new Pump(80+r.nextInt(41));
+            else return new Pump(80+random.nextInt(41));
         }
         else return null;
-    }
-
-    /**
-     * Method for getting the water from the field.
-     * Prints the amount of water taken.
-     * @return The amount of water in the field.
-     */
-    @Override
-    public int getWater() {
-        return super.getWater();
     }
 
     /**
@@ -94,35 +84,16 @@ public class Cistern extends ActiveFields{
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
-        String playersNames = "null";
-
-        for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
-            if (i != players.size() - 1) {
-                playersNames += ", ";
-            }
-        }
-
-
+        String playerBuilder = StringResourceController.stingBuilder(players);
 
         ArrayList<Pipe> pipes = this.getPipes();
-        String pipesNames ="null";
-        if(pipes != null) {
-            for (int i = 0; i < pipes.size(); i++) {
-                if (i == 0) pipesNames = "";
-                pipesNames += Controller.objectReverseNames.get(pipes.get(i));
-                if (i != pipes.size() - 1) {
-                    pipesNames += ", ";
-                }
-            }
-        }
+        String pipeBuilder = StringResourceController.stingBuilder(pipes);
 
           return "name: "+ Controller.objectReverseNames.get(this)
                   + "\noccupied: " + this.isOccupied()
                   + "\nwater: " + getWaterNoChange()
                   + "\nbroken: " + this.isBroken()
-                  + "\nplayers: " + playersNames
-                  + "\npipes: " + pipesNames + "\n";
+                  + "\nplayers: " + playerBuilder
+                  + "\npipes: " + pipeBuilder + "\n";
     }
 }

@@ -16,13 +16,13 @@ public abstract class ActiveFields extends Field {
      */
     private ArrayList<Pipe> pipes  = new ArrayList<>();
     @Override
-    public ArrayList<Field> getNeighborFields(){ return new ArrayList<Field>(pipes);}
+    public ArrayList<Field> getNeighborFields(){ return new ArrayList<>(pipes);}
     /**
      * Getter for pipes. Only for child classes.
      * @return The pipes connected to the active field
      */
     public ArrayList<Pipe> getPipes() {
-        if (pipes.size() == 0) return null;
+        if (pipes.isEmpty()) return new ArrayList<>();
         return pipes;
     }
 

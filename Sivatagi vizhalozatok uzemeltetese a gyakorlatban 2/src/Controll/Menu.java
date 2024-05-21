@@ -16,7 +16,6 @@ import javax.swing.JComboBox;
 
 
 public class Menu extends JFrame implements ActionListener {
-    public String currentTheme;
     private JButton newGame;
     private JButton exitGame;
     private JButton theme;

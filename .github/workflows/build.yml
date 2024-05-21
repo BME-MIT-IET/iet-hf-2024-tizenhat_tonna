@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - Manuális-és-statikus-ellenőrzés
+      - Sonar-Fixes
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:

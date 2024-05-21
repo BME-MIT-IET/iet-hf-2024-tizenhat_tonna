@@ -63,7 +63,7 @@ public class WaterCounter {
     public int getMechanic() { return mechanic; }
 
     public ArrayList<Cistern> getCisterns() { return cisterns; }
-    
+
     public ArrayList<Pipe> getPipes() { return pipes; }
 
     public boolean getEnd() { return end; }

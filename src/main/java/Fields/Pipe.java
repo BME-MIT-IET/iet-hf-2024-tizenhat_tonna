@@ -5,14 +5,17 @@ import Enums.Fluid;
 import Fields.ActiveFields.ActiveFields;
 import Fields.ActiveFields.Pump;
 import Players.Player;
+import StringResource.StringResourceController;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * Class for Pipes
  * */
 public class Pipe extends Field {
-
+    private final Random random = new Random();
     /**
      * Capacity of the pipe
      */
@@ -37,7 +40,7 @@ public class Pipe extends Field {
     /**
      * The ends of the pipe. Default is empty.
      */
-    private ArrayList<ActiveFields> fields = new ArrayList<>();
+    private List<ActiveFields> fields = new ArrayList<>();
 
     /**
      * Constructor for Pipe
@@ -50,7 +53,7 @@ public class Pipe extends Field {
     /**
      * Setter for capacity. Only for initialization.
      */
-    public void setFields(ArrayList<ActiveFields> fields) {
+    public void setFields(List<ActiveFields> fields) {
         this.fields = fields;
     }
     /**
@@ -84,12 +87,12 @@ public class Pipe extends Field {
     /**
      * Getter for fields as ActiveFields.
      */
-    public ArrayList<ActiveFields> getFields() { return fields; }
+    public List<ActiveFields> getFields() { return fields; }
     /**
      * Getter for fields as Field.
      */
     @Override
-    public ArrayList<Field> getNeighborFields(){ return new ArrayList<Field>(fields);}
+    public ArrayList<Field> getNeighborFields(){ return new ArrayList<>(fields);}
     /**
      * Getter for capacity.
      */
@@ -133,7 +136,7 @@ public class Pipe extends Field {
             breakable = 5;
         }
         else {
-            breakable = 3+ new Random().nextInt(8);
+            breakable = 3+ random.nextInt(8);
         }
         return true;
     }
@@ -145,8 +148,8 @@ public class Pipe extends Field {
      */
     @Override
     public Pipe placePump(Pump newPump) {
-    	if(newPump == null) return null;
-        ActiveFields oldPump = (ActiveFields) fields.remove(0);
+    	if(newPump == null) { return null; }
+        ActiveFields oldPump = fields.remove(0);
 
         disconnect(oldPump);
 
@@ -154,11 +157,10 @@ public class Pipe extends Field {
 
         oldPump.removePipe(this);
         Pipe newPipe;
-        Random r = new Random();
         if(Controller.isTest()) {
             newPipe = new Pipe(50);
         }
-        else newPipe = new Pipe(30+r.nextInt(41));
+        else newPipe = new Pipe(30+random.nextInt(41));
         newPipe.connect(newPump);
 
         newPipe.connect(oldPump);
@@ -240,13 +242,12 @@ public class Pipe extends Field {
         if(this.isOccupied())
             return null;
         if(fluid == Fluid.SLIPPERY){
-            Random r = new Random();
             int index;
             if (Controller.isTest()) {
                 index = 1;
             }
             else {
-                index = new Random().nextInt(2);
+                index = random.nextInt(2);
             }
             fields.get(index).accept(p);
             return fields.get(index);
@@ -263,9 +264,10 @@ public class Pipe extends Field {
      * @param p The player to be removed.
      * @return True if the player was removed.
      */
+    @Override
     public boolean removePlayer(Player p){
         if(fluid == Fluid.STICKY){
-            if(leave == true){
+            if(leave){
                 leave = false;
                 setOccupied(false);
                 getPlayers().remove(p);
@@ -281,6 +283,7 @@ public class Pipe extends Field {
      * Methods for making the pipe slippery.
      * @return True if the pipe successfully became slippery.
      */
+    @Override
     public boolean makeSlippery(){
         if(fluid == Fluid.STICKY) return false;
         if(remainingFluidTime == 0){
@@ -288,7 +291,7 @@ public class Pipe extends Field {
                 remainingFluidTime = 5;
             }
             else {
-                remainingFluidTime = 3+new Random().nextInt(3);
+                remainingFluidTime = 3+random.nextInt(3);
             }
             fluid = Fluid.SLIPPERY;
             return true;
@@ -299,6 +302,7 @@ public class Pipe extends Field {
      * Methods for making the pipe sticky.
      * @return True if the pipe successfully became sticky.
      */
+    @Override
     public  boolean makeSticky(){
         if(fluid == Fluid.SLIPPERY) return false;
         if(remainingFluidTime == 0){
@@ -306,7 +310,7 @@ public class Pipe extends Field {
                 remainingFluidTime = 5;
             }
             else {
-                remainingFluidTime = 3+new Random().nextInt(3);
+                remainingFluidTime = 3+random.nextInt(3);
             }
             fluid = Fluid.STICKY;
             return true;
@@ -318,6 +322,7 @@ public class Pipe extends Field {
      * Reduces the amount of time left until the pipe becomes dry.
      * If the time is 0 makes the pipe dry.
      */
+    @Override
     public void step(){
         if(breakable > 0){
             breakable--;
@@ -337,33 +342,16 @@ public class Pipe extends Field {
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
+        String playerBuilder = StringResourceController.stingBuilder(players);
 
-        String playersNames = "null";
-
-        for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
-            if (i != players.size() - 1) {
-                playersNames += ", ";
-            }
-        }
-
-        ArrayList<ActiveFields> fields = this.getFields();
-        String fieldsNames ="null";
-        for (int i = 0; i < fields.size(); i++) {
-            if(i == 0) fieldsNames = "";
-            fieldsNames += Controller.objectReverseNames.get(fields.get(i));
-            if (i != fields.size() - 1) {
-                fieldsNames += ", ";
-            }
-        }
-
+        List<ActiveFields> localFields = this.getFields();
+        String fieldBuilder = StringResourceController.stingBuilder(localFields);
         return "name: " + Controller.objectReverseNames.get(this)
                 + "\noccupied: " + this.isOccupied()
                 + "\nwater: " + getWaterNoChange()
                 + "\nbroken: " + this.isBroken()
-                + "\nplayers: " + playersNames
-                + "\nfields: " + fieldsNames
+                + "\nplayers: " + playerBuilder
+                + "\nfields: " + fieldBuilder
                 + "\ncapacity: " + this.getCapacity()
                 + "\nbreakable: " + this.getBreakable()
                 + "\nrfluidtime: " + this.getRemainingFluidTime()
