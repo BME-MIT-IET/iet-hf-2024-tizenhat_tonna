@@ -1,5 +1,7 @@
 package Controll;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
@@ -16,6 +18,7 @@ import javax.swing.JComboBox;
 
 
 public class Menu extends JFrame implements ActionListener {
+    private String currentTheme;
     private JButton newGame;
     private JButton exitGame;
     private JButton theme;

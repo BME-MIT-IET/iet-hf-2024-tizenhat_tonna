@@ -5,7 +5,10 @@ import Enums.Fluid;
 import Fields.ActiveFields.ActiveFields;
 import Fields.ActiveFields.Pump;
 import Players.Player;
+import StringResource.StringResourceController;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -37,7 +40,7 @@ public class Pipe extends Field {
     /**
      * The ends of the pipe. Default is empty.
      */
-    private ArrayList<ActiveFields> fields = new ArrayList<>();
+    private List<ActiveFields> fields = new ArrayList<>();
 
     /**
      * Constructor for Pipe
@@ -50,7 +53,7 @@ public class Pipe extends Field {
     /**
      * Setter for capacity. Only for initialization.
      */
-    public void setFields(ArrayList<ActiveFields> fields) {
+    public void setFields(List<ActiveFields> fields) {
         this.fields = fields;
     }
     /**
@@ -84,7 +87,7 @@ public class Pipe extends Field {
     /**
      * Getter for fields as ActiveFields.
      */
-    public ArrayList<ActiveFields> getFields() { return fields; }
+    public List<ActiveFields> getFields() { return fields; }
     /**
      * Getter for fields as Field.
      */
@@ -146,7 +149,7 @@ public class Pipe extends Field {
     @Override
     public Pipe placePump(Pump newPump) {
     	if(newPump == null) { return null; }
-        ActiveFields oldPump = (ActiveFields) fields.remove(0);
+        ActiveFields oldPump = fields.remove(0);
 
         disconnect(oldPump);
 
@@ -261,6 +264,7 @@ public class Pipe extends Field {
      * @param p The player to be removed.
      * @return True if the player was removed.
      */
+    @Override
     public boolean removePlayer(Player p){
         if(fluid == Fluid.STICKY){
             if(leave){
@@ -279,6 +283,7 @@ public class Pipe extends Field {
      * Methods for making the pipe slippery.
      * @return True if the pipe successfully became slippery.
      */
+    @Override
     public boolean makeSlippery(){
         if(fluid == Fluid.STICKY) return false;
         if(remainingFluidTime == 0){
@@ -297,6 +302,7 @@ public class Pipe extends Field {
      * Methods for making the pipe sticky.
      * @return True if the pipe successfully became sticky.
      */
+    @Override
     public  boolean makeSticky(){
         if(fluid == Fluid.SLIPPERY) return false;
         if(remainingFluidTime == 0){
@@ -316,6 +322,7 @@ public class Pipe extends Field {
      * Reduces the amount of time left until the pipe becomes dry.
      * If the time is 0 makes the pipe dry.
      */
+    @Override
     public void step(){
         if(breakable > 0){
             breakable--;
@@ -335,33 +342,16 @@ public class Pipe extends Field {
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
+        String playerBuilder = StringResourceController.stingBuilder(players);
 
-        String playersNames = "null";
-
-        for (int i = 0; i < players.size(); i++) {
-            if(i == 0) playersNames = "";
-            playersNames += Controller.objectReverseNames.get(players.get(i));
-            if (i != players.size() - 1) {
-                playersNames += ", ";
-            }
-        }
-
-        ArrayList<ActiveFields> loaclFields = this.getFields();
-        String fieldsNames ="null";
-        for (int i = 0; i < loaclFields.size(); i++) {
-            if(i == 0) fieldsNames = "";
-            fieldsNames += Controller.objectReverseNames.get(loaclFields.get(i));
-            if (i != loaclFields.size() - 1) {
-                fieldsNames += ", ";
-            }
-        }
-
+        List<ActiveFields> localFields = this.getFields();
+        String fieldBuilder = StringResourceController.stingBuilder(localFields);
         return "name: " + Controller.objectReverseNames.get(this)
                 + "\noccupied: " + this.isOccupied()
                 + "\nwater: " + getWaterNoChange()
                 + "\nbroken: " + this.isBroken()
-                + "\nplayers: " + playersNames
-                + "\nfields: " + fieldsNames
+                + "\nplayers: " + playerBuilder
+                + "\nfields: " + fieldBuilder
                 + "\ncapacity: " + this.getCapacity()
                 + "\nbreakable: " + this.getBreakable()
                 + "\nrfluidtime: " + this.getRemainingFluidTime()
