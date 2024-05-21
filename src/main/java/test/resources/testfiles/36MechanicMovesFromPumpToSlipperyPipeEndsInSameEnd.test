@@ -1,0 +1,46 @@
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+Sikeres művelet
+A pálya létrehozása sikeresen lezajlott. Kezdődhet a játék!
+Sikeres művelet
+name: Pto
+occupied: false
+water: 0
+broken: false
+players: null
+fields: Potherend, Psameend
+capacity: 100
+breakable: 0
+rfluidtime: 0
+leave: true
+fluid: slippery
+
+name: Psameend
+occupied: false
+water: 0
+broken: false
+players: mech
+pipes: Pto
+tank: 100
+waterFrom: null
+waterTo: null
+
+name: Potherend
+occupied: false
+water: 0
+broken: false
+players: null
+pipes: Pto
+tank: 100
+waterFrom: null
+waterTo: null
+
+name: mech
+standingField: Psameend
+holdingPipe: null
+holdingPump: null
+

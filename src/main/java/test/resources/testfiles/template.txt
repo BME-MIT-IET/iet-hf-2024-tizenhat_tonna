@@ -1,0 +1,45 @@
+Pipe:
+
+name: 
+occupied: false
+water: 0
+broken: false
+players: null
+fields: null
+capacity: 100
+breakable: 0
+rfluidtime: 0
+leave: false
+fluid: dry
+
+Cistern
+
+name:
+occupied:false
+water: 0
+broken: false
+players:
+pipes: null
+waterStored:0
+
+Pump
+
+name: 
+occupied: false
+water: 0
+broken: false
+players: null
+pipes: null
+tank: 500
+waterFrom: null
+waterTo: null
+
+Mech
+
+name: mech
+standingField: Pto
+holdingPipe: null
+holdingPump: null
+
+
+

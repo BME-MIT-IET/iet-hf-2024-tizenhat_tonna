@@ -1,0 +1,9 @@
+cistern c
+pipe p 100 water:100
+connectpipe p c
+pump pump 100
+connectpipe p pump
+create
+step c
+showobject c
+showobject p
