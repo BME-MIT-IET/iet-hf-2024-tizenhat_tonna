@@ -242,22 +242,22 @@ public class Controller {
                     step(cmd);
                     break;
                 case ("endturn"):
-                    endturn(cmd);
+                    endturn();
                     break;
                 case ("count"):
-                    count(cmd);
+                    count();
                     break;
                 case ("test"):
                     test(cmd);
                     break;
                 case ("setend"):
-                    setend(cmd);
+                    setend();
                     break;
                 case ("setpump"):
                     setpump(cmd);
                     break;
                 case ("restart"):
-                    restart(cmd);
+                    restart();
                     break;
                 case ("exit"):
                     return;
