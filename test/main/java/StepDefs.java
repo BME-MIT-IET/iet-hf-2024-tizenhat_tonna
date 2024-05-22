@@ -21,7 +21,7 @@ public class StepDefs {
 
     @Given("A jatek inicializalasra kerult")
     public void gameInitialized() {
-        Controller.load("src/testpalya.txt");
+        Controller.load("test/resources/testpalya.txt");
 
         Controller.Run();
         Controller.create();
