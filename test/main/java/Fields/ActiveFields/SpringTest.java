@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.Fields.Pipe;
-import main.java.Players.Mechanic;
+import main.java.fields.Pipe;
+import main.java.fields.activefields.Spring;
+import main.java.players.Mechanic;
 
 class SpringTest {
 	private Spring spring;

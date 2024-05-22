@@ -2,10 +2,7 @@ name: SonarCloud
 on:
   push:
     branches:
-      - main
-      - Manuális-és-statikus-ellenőrzés
-      - Sonar-Fixes
-      - maven
+      - '**'
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:

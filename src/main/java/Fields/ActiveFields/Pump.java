@@ -1,9 +1,9 @@
-package main.java.Fields.ActiveFields;
+package main.java.fields.activefields;
 
-import main.java.Controll.Controller;
-import main.java.Fields.Pipe;
-import main.java.Players.Player;
-import main.java.StringResource.StringResourceController;
+import main.java.control.Controller;
+import main.java.fields.Pipe;
+import main.java.players.Player;
+import main.java.stringresource.StringResourceController;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -156,12 +156,12 @@ public class Pump extends ActiveFields {
 
     private String getPlayerNames() {
         ArrayList<Player> players = this.getPlayers();
-        return StringResourceController.stingBuilder(players);
+        return StringResourceController.stringBuilder(players);
     }
 
 
     private String getPipeNames(){
         ArrayList<Pipe> pipes = this.getPipes();
-        return StringResourceController.stingBuilder(pipes);
+        return StringResourceController.stringBuilder(pipes);
     }
 }

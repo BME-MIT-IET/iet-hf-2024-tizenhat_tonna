@@ -1,9 +1,9 @@
-package main.java.Fields.ActiveFields;
+package main.java.fields.activefields;
 
-import main.java.Controll.Controller;
-import main.java.Fields.Pipe;
-import main.java.Players.Player;
-import main.java.StringResource.StringResourceController;
+import main.java.control.Controller;
+import main.java.fields.Pipe;
+import main.java.players.Player;
+import main.java.stringresource.StringResourceController;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -84,10 +84,10 @@ public class Cistern extends ActiveFields{
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
-        String playerBuilder = StringResourceController.stingBuilder(players);
+        String playerBuilder = StringResourceController.stringBuilder(players);
 
         ArrayList<Pipe> pipes = this.getPipes();
-        String pipeBuilder = StringResourceController.stingBuilder(pipes);
+        String pipeBuilder = StringResourceController.stringBuilder(pipes);
 
           return "name: "+ Controller.objectReverseNames.get(this)
                   + "\noccupied: " + this.isOccupied()

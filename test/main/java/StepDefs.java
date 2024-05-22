@@ -1,15 +1,14 @@
 package main.java;
 
-import main.java.Controll.Controller;
-import main.java.Fields.Field;
-import main.java.Fields.Pipe;
-import main.java.Players.Player;
+import main.java.control.Controller;
+import main.java.fields.Field;
+import main.java.fields.Pipe;
+import main.java.players.Player;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +22,7 @@ public class StepDefs {
     public void gameInitialized() {
         Controller.load("test/resources/testpalya.txt");
 
-        Controller.Run();
+        Controller.run();
         Controller.create();
         Controller.setActivePlayer(Controller.getAllPlayers().get(0));
     }

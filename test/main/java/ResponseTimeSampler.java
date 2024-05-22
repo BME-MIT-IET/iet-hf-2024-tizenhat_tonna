@@ -1,11 +1,12 @@
 package main.java;
 
-import main.java.Controll.Menu;
-import main.java.Controll.ViewGame;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.protocol.java.sampler.AbstractJavaSamplerClient;
 import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
 import org.apache.jmeter.samplers.SampleResult;
+
+import main.java.control.Menu;
+import main.java.control.ViewGame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -50,7 +51,7 @@ public class ResponseTimeSampler extends AbstractJavaSamplerClient {
                 JButton playButton = menu.getPlayButton();
                 simulateButtonClick(playButton);
                 result.sampleStart(); // start timing
-                ArrayList<JButton> actionButtons = menu.getActionButtons();
+                ArrayList<JButton> actionButtons = (ArrayList<JButton>) menu.getActionButtons();
                 for (JButton bt : actionButtons) {
                     simulateButtonClick(bt);
                 }
@@ -59,7 +60,7 @@ public class ResponseTimeSampler extends AbstractJavaSamplerClient {
                 JButton playButton = menu.getPlayButton();
                 simulateButtonClick(playButton);
                 result.sampleStart(); // start timing
-                ArrayList<JButton> actionButtons = menu.getActionButtons();
+                ArrayList<JButton> actionButtons = (ArrayList<JButton>) menu.getActionButtons();
                 for (int i = 0; i < 1000000; i++){
                     if (i % 100 == 0)
                         System.out.println(i);

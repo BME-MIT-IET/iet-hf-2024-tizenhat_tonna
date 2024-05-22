@@ -1,7 +1,7 @@
-package main.java.Drawing;
+package main.java.drawing;
 
-import main.java.Controll.ViewGame;
-import main.java.Fields.ActiveFields.Pump;
+import main.java.control.ViewGame;
+import main.java.fields.activefields.Pump;
 
 import javax.swing.*;
 import java.awt.*;

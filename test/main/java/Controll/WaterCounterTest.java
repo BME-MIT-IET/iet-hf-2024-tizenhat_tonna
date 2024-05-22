@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.Fields.Pipe;
-import main.java.Fields.ActiveFields.Cistern;
+import main.java.control.WaterCounter;
+import main.java.fields.Pipe;
+import main.java.fields.activefields.Cistern;
 
 class WaterCounterTest {
 	private WaterCounter waterCounter;

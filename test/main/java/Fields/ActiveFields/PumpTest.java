@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.Fields.Pipe;
+import main.java.fields.Pipe;
+import main.java.fields.activefields.Pump;
 
 class PumpTest {
 	private Pump pump;

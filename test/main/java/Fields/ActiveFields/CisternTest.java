@@ -5,8 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.Controll.Controller;
-import main.java.Fields.Pipe;
+import main.java.fields.Pipe;
+import main.java.fields.activefields.Cistern;
+import main.java.fields.activefields.Pump;
 
 class CisternTest {
 	private Cistern cistern;

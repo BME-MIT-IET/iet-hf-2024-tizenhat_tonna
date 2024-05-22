@@ -5,9 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.Fields.Pipe;
-import main.java.Fields.ActiveFields.Cistern;
-import main.java.Fields.ActiveFields.Pump;
+import main.java.fields.Pipe;
+import main.java.fields.activefields.Cistern;
+import main.java.fields.activefields.Pump;
+import main.java.players.Mechanic;
 
 class MechanicTest {
 	private Mechanic mechanic;

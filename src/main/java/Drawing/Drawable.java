@@ -1,4 +1,4 @@
-package main.java.Drawing;
+package main.java.drawing;
 
 import javax.swing.*;
 import java.awt.*;

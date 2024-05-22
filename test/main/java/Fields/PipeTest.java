@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.Controll.Controller;
-import main.java.Enums.Fluid;
-import main.java.Fields.ActiveFields.ActiveFields;
-import main.java.Fields.ActiveFields.Pump;
-import main.java.Players.Mechanic;
-import main.java.Players.Player;
+import main.java.control.Controller;
+import main.java.enums.Fluid;
+import main.java.fields.Field;
+import main.java.fields.Pipe;
+import main.java.fields.activefields.ActiveFields;
+import main.java.fields.activefields.Pump;
+import main.java.players.Mechanic;
+import main.java.players.Player;
 
 class PipeTest {
 	private Pipe pipe;

@@ -1,16 +1,12 @@
-package main.java.Controll;
+package main.java.control;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.WindowConstants;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -127,15 +123,15 @@ public class Menu extends JFrame implements ActionListener {
         return newGame;
     }
 
-    public ArrayList<JButton> getActionButtons() {
-        ArrayList<JButton> actionButtons = new ArrayList<JButton>();
+    public List<JButton> getActionButtons() {
+        ArrayList<JButton> actionButtons = new ArrayList<>();
         if (vg == null) return actionButtons;
 
-        actionButtons.add(vg.repairButton);
-        actionButtons.add(vg.breakButton);
-        actionButtons.add(vg.makeSlipperyButton);
-        actionButtons.add(vg.makeStickyButton);
-        actionButtons.add(vg.putDownButton);
+        actionButtons.add(ViewGame.repairButton);
+        actionButtons.add(ViewGame.breakButton);
+        actionButtons.add(ViewGame.makeSlipperyButton);
+        actionButtons.add(ViewGame.makeStickyButton);
+        actionButtons.add(ViewGame.putDownButton);
 
         return actionButtons;
     }
@@ -161,7 +157,7 @@ public class Menu extends JFrame implements ActionListener {
                     Controller.commandList.add("addplayer D Sab" + i);
                 }
             }
-            Controller.Run(); // egyszer fut le, felépíti a pályát, utána a függvényeit kell majd hívni
+            Controller.run(); // egyszer fut le, felépíti a pályát, utána a függvényeit kell majd hívni
 
             Controller.create();
             Controller.setActivePlayer(Controller.getAllPlayers().get(0));
