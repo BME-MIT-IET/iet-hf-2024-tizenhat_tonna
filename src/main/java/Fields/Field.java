@@ -1,9 +1,9 @@
-package Fields;
+package main.java.Fields;
 
-import Fields.ActiveFields.ActiveFields;
-import Fields.ActiveFields.Pump;
-import Interfaces.Steppable;
-import Players.Player;
+import main.java.Fields.ActiveFields.ActiveFields;
+import main.java.Fields.ActiveFields.Pump;
+import main.java.Interfaces.Steppable;
+import main.java.Players.Player;
 
 import java.util.ArrayList;
 

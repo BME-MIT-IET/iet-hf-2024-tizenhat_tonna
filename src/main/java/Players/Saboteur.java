@@ -1,6 +1,6 @@
-package Players;
+package main.java.Players;
 
-import Controll.Controller;
+import main.java.Controll.Controller;
 
 
 /**

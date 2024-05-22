@@ -1,9 +1,9 @@
-package Players;
+package main.java.Players;
 
-import Controll.Controller;
-import Fields.ActiveFields.ActiveFields;
-import Fields.ActiveFields.Pump;
-import Fields.Pipe;
+import main.java.Controll.Controller;
+import main.java.Fields.ActiveFields.ActiveFields;
+import main.java.Fields.ActiveFields.Pump;
+import main.java.Fields.Pipe;
 
 
 /**

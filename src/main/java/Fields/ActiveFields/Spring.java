@@ -1,9 +1,9 @@
-package Fields.ActiveFields;
+package main.java.Fields.ActiveFields;
 
-import Controll.Controller;
-import Fields.Pipe;
-import Players.Player;
-import StringResource.StringResourceController;
+import main.java.Controll.Controller;
+import main.java.Fields.Pipe;
+import main.java.Players.Player;
+import main.java.StringResource.StringResourceController;
 
 import java.util.ArrayList;
 
