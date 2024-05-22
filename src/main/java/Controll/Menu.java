@@ -1,9 +1,20 @@
-package Controll;
+package main.java.Controll;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
+import javax.swing.WindowConstants;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 
 public class Menu extends JFrame implements ActionListener {
@@ -15,6 +26,8 @@ public class Menu extends JFrame implements ActionListener {
     private JComboBox<Integer> saboteurs;
     private JTextField mechanic;
     private JTextField saboteur;
+
+    public static ViewGame vg;
 
     /**
      * konstruktor
@@ -106,13 +119,34 @@ public class Menu extends JFrame implements ActionListener {
         }
     }
 
+    public JButton getThemeButton() {
+        return theme;
+    }
+
+    public JButton getPlayButton() {
+        return newGame;
+    }
+
+    public ArrayList<JButton> getActionButtons() {
+        ArrayList<JButton> actionButtons = new ArrayList<JButton>();
+        if (vg == null) return actionButtons;
+
+        actionButtons.add(vg.repairButton);
+        actionButtons.add(vg.breakButton);
+        actionButtons.add(vg.makeSlipperyButton);
+        actionButtons.add(vg.makeStickyButton);
+        actionButtons.add(vg.putDownButton);
+
+        return actionButtons;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         // új játék elkezdése a kiválasztott adatokkal
         if (e.getSource() == newGame) {
 
-            Controller.load("src/palya.txt");
+            Controller.load("src/main/resources/palya.txt");
 
 
             if ((int)mechanics.getSelectedItem() > 2) {
@@ -132,7 +166,7 @@ public class Menu extends JFrame implements ActionListener {
             Controller.create();
             Controller.setActivePlayer(Controller.getAllPlayers().get(0));
             this.dispose();
-            ViewGame vg = new ViewGame();
+            vg = new ViewGame();
             vg.setBackgroundColor(currentTheme);
         }
 

@@ -1,8 +1,8 @@
-package Fields.ActiveFields;
+package main.java.Fields.ActiveFields;
 
-import Fields.Field;
-import Fields.Pipe;
-import Players.Player;
+import main.java.Fields.Field;
+import main.java.Fields.Pipe;
+import main.java.Players.Player;
 
 import java.util.ArrayList;
 

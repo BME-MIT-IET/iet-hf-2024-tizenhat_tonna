@@ -1,6 +1,6 @@
-package StringResource;
+package main.java.StringResource;
 
-import Controll.Controller;
+import main.java.Controll.Controller;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public final class StringResourceController {
         StringBuilder builder = new StringBuilder("null");
         if(collection != null) {
             for (int i = 0; i < collection.size(); i++) {
-                if (i == 0) builder.delete(0,3);
+                if (i == 0) builder.delete(0,4);
                 builder.append(Controller.objectReverseNames.get(collection.get(i)));
                 if (i != collection.size() - 1) {
                     builder.append(", ");

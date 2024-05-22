@@ -1,6 +1,6 @@
-package Drawing;
+package main.java.Drawing;
 
-import Controll.ViewGame;
+import main.java.Controll.ViewGame;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package Interfaces;
+package main.java.Interfaces;
 
 /**
  * Steppable interface.
