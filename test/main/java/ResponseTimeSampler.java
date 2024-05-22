@@ -50,7 +50,7 @@ public class ResponseTimeSampler extends AbstractJavaSamplerClient {
                 JButton playButton = menu.getPlayButton();
                 simulateButtonClick(playButton);
                 result.sampleStart(); // start timing
-                ArrayList<JButton> actionButtons = menu.getActionButtons();
+                ArrayList<JButton> actionButtons = (ArrayList<JButton>) menu.getActionButtons();
                 for (JButton bt : actionButtons) {
                     simulateButtonClick(bt);
                 }
@@ -59,7 +59,7 @@ public class ResponseTimeSampler extends AbstractJavaSamplerClient {
                 JButton playButton = menu.getPlayButton();
                 simulateButtonClick(playButton);
                 result.sampleStart(); // start timing
-                ArrayList<JButton> actionButtons = menu.getActionButtons();
+                ArrayList<JButton> actionButtons = (ArrayList<JButton>) menu.getActionButtons();
                 for (int i = 0; i < 1000000; i++){
                     if (i % 100 == 0)
                         System.out.println(i);
