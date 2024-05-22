@@ -1,8 +1,9 @@
-package main.java.Drawing;
-
-import main.java.Controll.ViewGame;
+package main.java.drawing;
 
 import javax.swing.*;
+
+import main.java.control.ViewGame;
+
 import java.awt.*;
 
 public class SpringDraw extends Drawable {

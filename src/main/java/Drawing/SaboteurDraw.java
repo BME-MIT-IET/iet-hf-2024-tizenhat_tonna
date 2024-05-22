@@ -1,14 +1,14 @@
-package main.java.Drawing;
+package main.java.drawing;
 
-import main.java.Controll.Controller;
-import main.java.Controll.ViewGame;
-import main.java.Fields.ActiveFields.Cistern;
-import main.java.Fields.ActiveFields.Pump;
-import main.java.Fields.ActiveFields.Spring;
-import main.java.Fields.Field;
-import main.java.Fields.Pipe;
-import main.java.Players.Player;
-import main.java.Players.Saboteur;
+import main.java.control.Controller;
+import main.java.control.ViewGame;
+import main.java.fields.Field;
+import main.java.fields.Pipe;
+import main.java.fields.activefields.Cistern;
+import main.java.fields.activefields.Pump;
+import main.java.fields.activefields.Spring;
+import main.java.players.Player;
+import main.java.players.Saboteur;
 
 import javax.swing.*;
 import java.awt.*;

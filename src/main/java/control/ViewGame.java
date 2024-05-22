@@ -1,9 +1,9 @@
-package main.java.Controll;
+package main.java.control;
 
-import main.java.Drawing.Drawable;
-import main.java.Drawing.PipeDraw;
-import main.java.Enums.Fluid;
-import main.java.Fields.Pipe;
+import main.java.drawing.Drawable;
+import main.java.drawing.PipeDraw;
+import main.java.enums.Fluid;
+import main.java.fields.Pipe;
 
 import javax.swing.*;
 import java.awt.*;

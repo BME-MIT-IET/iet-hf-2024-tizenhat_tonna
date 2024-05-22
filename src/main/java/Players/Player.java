@@ -1,8 +1,8 @@
-package main.java.Players;
+package main.java.players;
 
-import main.java.Fields.ActiveFields.Pump;
-import main.java.Fields.Field;
-import main.java.Fields.Pipe;
+import main.java.fields.Field;
+import main.java.fields.Pipe;
+import main.java.fields.activefields.Pump;
 
 /**
  * Abstract class for the players.

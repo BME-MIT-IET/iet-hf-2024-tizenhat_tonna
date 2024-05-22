@@ -1,11 +1,11 @@
-package main.java.Fields;
+package main.java.fields;
 
-import main.java.Controll.Controller;
-import main.java.Enums.Fluid;
-import main.java.Fields.ActiveFields.ActiveFields;
-import main.java.Fields.ActiveFields.Pump;
-import main.java.Players.Player;
-import main.java.StringResource.StringResourceController;
+import main.java.control.Controller;
+import main.java.enums.Fluid;
+import main.java.fields.activefields.ActiveFields;
+import main.java.fields.activefields.Pump;
+import main.java.players.Player;
+import main.java.stringresource.StringResourceController;
 
 import java.util.ArrayList;
 import java.util.List;

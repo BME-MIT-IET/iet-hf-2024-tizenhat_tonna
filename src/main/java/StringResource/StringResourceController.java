@@ -1,8 +1,8 @@
-package main.java.StringResource;
-
-import main.java.Controll.Controller;
+package main.java.stringresource;
 
 import java.util.List;
+
+import main.java.control.Controller;
 
 public final class StringResourceController {
     private StringResourceController(){}

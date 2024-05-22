@@ -1,4 +1,4 @@
-package main.java.Enums;
+package main.java.enums;
 
 public enum Fluid {
     DRY, STICKY, SLIPPERY

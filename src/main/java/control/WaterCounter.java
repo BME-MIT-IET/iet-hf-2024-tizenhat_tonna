@@ -1,9 +1,9 @@
-package main.java.Controll;
-
-import main.java.Fields.ActiveFields.Cistern;
-import main.java.Fields.Pipe;
+package main.java.control;
 
 import java.util.ArrayList;
+
+import main.java.fields.Pipe;
+import main.java.fields.activefields.Cistern;
 
 import static java.lang.Math.abs;
 
