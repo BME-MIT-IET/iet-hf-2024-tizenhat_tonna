@@ -156,12 +156,12 @@ public class Pump extends ActiveFields {
 
     private String getPlayerNames() {
         ArrayList<Player> players = this.getPlayers();
-        return StringResourceController.stingBuilder(players);
+        return StringResourceController.stringBuilder(players);
     }
 
 
     private String getPipeNames(){
         ArrayList<Pipe> pipes = this.getPipes();
-        return StringResourceController.stingBuilder(pipes);
+        return StringResourceController.stringBuilder(pipes);
     }
 }

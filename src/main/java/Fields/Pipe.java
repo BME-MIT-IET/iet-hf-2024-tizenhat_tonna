@@ -342,10 +342,10 @@ public class Pipe extends Field {
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
-        String playerBuilder = StringResourceController.stingBuilder(players);
+        String playerBuilder = StringResourceController.stringBuilder(players);
 
         List<ActiveFields> localFields = this.getFields();
-        String fieldBuilder = StringResourceController.stingBuilder(localFields);
+        String fieldBuilder = StringResourceController.stringBuilder(localFields);
         return "name: " + Controller.objectReverseNames.get(this)
                 + "\noccupied: " + this.isOccupied()
                 + "\nwater: " + getWaterNoChange()

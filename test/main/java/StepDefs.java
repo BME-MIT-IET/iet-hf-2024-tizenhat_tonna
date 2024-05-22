@@ -9,7 +9,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +22,7 @@ public class StepDefs {
     public void gameInitialized() {
         Controller.load("test/resources/testpalya.txt");
 
-        Controller.Run();
+        Controller.run();
         Controller.create();
         Controller.setActivePlayer(Controller.getAllPlayers().get(0));
     }

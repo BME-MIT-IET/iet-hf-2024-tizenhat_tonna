@@ -40,7 +40,7 @@ public class MechanicDraw extends Drawable {
     @Override
     public void Draw(JPanel panel, Graphics2D g) {
         Mechanic m = (Mechanic)ViewGame.objectDrawNames.get(this);
-        Player current = Controller.GetActivePlayer();
+        Player current = Controller.getActivePlayer();
         mecName = Controller.objectReverseNames.get(m);
         mec.setText(mecName);
         Field f = m.getStandingField();

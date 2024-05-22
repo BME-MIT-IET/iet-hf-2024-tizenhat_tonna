@@ -42,7 +42,7 @@ public class SaboteurDraw extends Drawable {
     @Override
     public void Draw(JPanel panel, Graphics2D g) {
         Saboteur s = (Saboteur)ViewGame.objectDrawNames.get(this);
-        Player current = Controller.GetActivePlayer();
+        Player current = Controller.getActivePlayer();
         sabName = Controller.objectReverseNames.get(s);
         sab.setText(sabName);
         Field f = s.getStandingField();

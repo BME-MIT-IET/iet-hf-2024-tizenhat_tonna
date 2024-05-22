@@ -61,11 +61,11 @@ public class Spring extends ActiveFields{
     @Override
     public String toString() {
         ArrayList<Player> players = this.getPlayers();
-        String playerBuilder = StringResourceController.stingBuilder(players);
+        String playerBuilder = StringResourceController.stringBuilder(players);
 
 
         ArrayList<Pipe> pipes = this.getPipes();
-        String pipeBuilder = StringResourceController.stingBuilder(pipes);
+        String pipeBuilder = StringResourceController.stringBuilder(pipes);
 
         return "name: "+ Controller.objectReverseNames.get(this)
                 + "\noccupied: " + this.isOccupied()

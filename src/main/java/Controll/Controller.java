@@ -74,10 +74,6 @@ public class Controller {
      * Name of the used file
      */
     private static String fileName = "";
-    /**
-     * Path of the used file
-     */
-    private static String filePath = "";
 
     /**
      * List of the test result
@@ -97,7 +93,7 @@ public class Controller {
     /**
      * List of the commands
      */
-    public static final List<String> commandList = new ArrayList<>();
+    protected static final List<String> commandList = new ArrayList<>();
 
     /**
      * Number of new pumps with commands
@@ -132,7 +128,7 @@ public class Controller {
         activePlayers.add(currentPlayer);
     }
 
-    public static Player GetActivePlayer() {
+    public static Player getActivePlayer() {
         return currentPlayer;
     }
 
@@ -155,7 +151,7 @@ public class Controller {
      * Function for controlling the game.
      * Reads a command than calls a function to execute it.
      */
-    public static void Run() {
+    public static void run() {
         while (!commandList.isEmpty()) {
             String command = commandList.get(0);
             commandList.remove(0);
@@ -283,6 +279,7 @@ public class Controller {
             if (commandList.isEmpty()) {
                 commandList.add(stdInScanner.nextLine());
             }
+            stdInScanner.close();
             String command = commandList.get(0);
             commandList.remove(0);
             String[] cmd = command.split(" ");
@@ -375,22 +372,22 @@ public class Controller {
                     step(cmd);
                     break;
                 case ("endturn"):
-                    endturn(cmd);
+                    endturn();
                     break;
                 case ("count"):
-                    count(cmd);
+                    count();
                     break;
                 case ("test"):
                     test(cmd);
                     break;
                 case ("setend"):
-                    setend(cmd);
+                    setend();
                     break;
                 case ("setpump"):
                     setpump(cmd);
                     break;
                 case ("restart"):
-                    restart(cmd);
+                    restart();
                     break;
                 case ("exit"):
                     return;
@@ -399,10 +396,10 @@ public class Controller {
             }
             if (moves == activePlayers.size()) {
                 moves = 0;
-                endturn(cmd);
+                endturn();
             }
         }
-        Run();
+        run();
     }
 
     /**
@@ -413,7 +410,6 @@ public class Controller {
         String modifiedPath = cmd.replace("/", File.separator).replace("\\", File.separator);
         try (Scanner scanner = new Scanner(new File(rootDirectory +  File.separator + modifiedPath));) {
             outResults.clear();
-            filePath = modifiedPath;
             String separator = "\\";
             String[] tmp = cmd.replaceAll(Pattern.quote(separator), "\\\\").split("\\\\");
             fileName = tmp[tmp.length - 1];
@@ -429,7 +425,8 @@ public class Controller {
     public static void loadFileFromSrcToReader(String fileNameToOpen) {
         // a text file is located in src folder in the project
         Path rootDir = Paths.get(".").normalize().toAbsolutePath();
-        File file = new File(rootDir.toString() + "/" + fileNameToOpen);
+        Path filePath = rootDir.resolve(fileNameToOpen);
+        File file = filePath.toFile();
         try (Reader input = new FileReader(file)) {
             try (BufferedReader br = new BufferedReader(input)) {
 
@@ -717,11 +714,11 @@ public class Controller {
         switch (commands[1]) {
             case "player":
                 if (test) outResults.add(p.toString());
-                else logger.log(Level.INFO, p::toString);
+                else logger.log(Level.INFO, p::toString); // Fix: Wrap the method call in a lambda function
                 break;
             case "field":
                 if (test) outResults.add(objectReverseNames.get(p.getStandingField()));
-                else logger.log(Level.INFO, objectReverseNames.get(p.getStandingField()));
+                else logger.log(Level.INFO, () -> objectReverseNames.get(p.getStandingField())); // Fix: Wrap the method call in a lambda function
                 break;
             default:
                 break;
@@ -1163,7 +1160,7 @@ public class Controller {
      * Function for ending a turn.
      * Responsible for calling the step function for all steppable objects.
      */
-    public static void endturn(String[] cmd) {
+    public static void endturn() {
         //elvégzi a kör végével járó lépéseket (vízszámolás, objektumok step függvényének hívása stb…)
         //vízszámlálás
         //water counter lehet hogy üres
@@ -1181,7 +1178,7 @@ public class Controller {
     /**
      * Function for countig the points for the two sides.
      */
-    public static void count(String[] cmd) {
+    public static void count() {
         waterCounter.count();
         if (test) outResults.add(StringResourceController.GOOD_ACTION);
         else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
@@ -1190,7 +1187,7 @@ public class Controller {
     /**
      * Function for restaring the game.
      */
-    public static void restart(String[] cmd) {
+    public static void restart() {
         random = true;
         objectNames.clear();
         objectReverseNames.clear();
@@ -1213,7 +1210,7 @@ public class Controller {
     /**
      * Function for signaling to the watercounter that the game ended.
      */
-    public static void setend(String[] cmd) {
+    public static void setend() {
         waterCounter.setEnd();
         if (test) outResults.add(StringResourceController.GOOD_ACTION);
         else logger.log(Level.INFO, StringResourceController.GOOD_ACTION);
