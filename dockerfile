@@ -21,7 +21,7 @@ ENV DISPLAY=host.docker.internal:0.0
 
 WORKDIR /app
 COPY --from=builder /app/target/*.jar /app/app.jar
-COPY --from=builder /app/src/palya.txt /app/src/palya.txt
+COPY --from=builder /app/src/main/resources/palya.txt /app/src/main/resources/palya.txt
 
 # Expose VNC port
 EXPOSE 5800 5900
