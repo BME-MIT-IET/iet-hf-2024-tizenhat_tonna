@@ -1,24 +1,24 @@
-cistern cistern1 water:0
-cistern cistern2 water:0
-spring spring1 2500
-spring spring2 2000
-pump A 200 water:20
-pump B 200 water:10
-pump C 200 water:50
-pump D 200 water:10
-pump E 200 water:10
-pump F 200 water:20
-pipe AC2 100
-pipe AB 100
-pipe BS2 100
-pipe CS2 100
-pipe CB 100
-pipe CD 100
-pipe DS1 100
-pipe DE 100
-pipe EF 100
-pipe FC1 100
-pipe AF 100
+cistern cistern1 water:0 draw:100:350
+cistern cistern2 water:0 draw:100:100
+spring spring1 2500 draw:650:350
+spring spring2 2000 draw:650:100
+pump A 200 water:20 broken:true draw:200:100
+pump B 200 water:10 draw:500:100
+pump C 200 water:50 draw:575:200
+pump D 200 water:10 broken:true draw:500:350
+pump E 200 water:10 draw:350:350
+pump F 200 water:20 draw:200:350
+pipe AC2 100 draw:225:125:125:125
+pipe AB 100 draw:225:125:525:125
+pipe BS2 100 draw:525:125:675:125
+pipe CS2 100 draw:600:225:675:125
+pipe CB 100 draw:600:225:525:125
+pipe CD 100 draw:600:225:525:375
+pipe DS1 100 draw:525:375:675:375
+pipe DE 100 draw:525:375:375:375
+pipe EF 100 draw:375:375:225:375
+pipe FC1 100 draw:225:375:125:375
+pipe AF 100 draw:225:125:225:375
 connectpipe AC2 A
 connectpipe AC2 cistern2
 connectpipe AB A
@@ -48,6 +48,10 @@ setpump D DS1 DE
 setpump E DE EF
 setpump F EF FC1
 mechanic Mec1 F
+addplayer F Mec1
 mechanic Mec2 A
+addplayer A Mec2
 saboteur Sab1 C
-saboteur Sab2 B
+addplayer C Sab1
+saboteur Sab2 AB
+addplayer AB Sab2
